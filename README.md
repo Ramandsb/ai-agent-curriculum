@@ -8,7 +8,7 @@ A comprehensive interactive curriculum covering:
 - Module 5: Advanced Agentic Systems & Agentic RAG
 
 ## 🚀 Live Demo
-Visit: [https://github.com/Ramandsb/ai-agent-curriculum/](https://github.com/Ramandsb/ai-agent-curriculum/)
+Visit: [[https://github.com/Ramandsb/ai-agent-curriculum/](https://ramandsb.github.io/ai-agent-curriculum/)]
 
 ## 📚 Curriculum Structure
 - 18 comprehensive pages
