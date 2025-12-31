@@ -1,0 +1,2984 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GenAI Curriculum</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: #333; line-height: 1.6; }
+        .container { display: flex; min-height: 100vh; }
+        .sidebar { width: 300px; background: white; padding: 2rem; overflow-y: auto; }
+        .logo { font-size: 1.5rem; font-weight: bold; margin-bottom: 2rem; color: #667eea; }
+        .module { margin-bottom: 1rem; }
+        .module-title { font-weight: 600; color: #667eea; padding: 0.5rem; cursor: pointer; border-radius: 8px; }
+        .module-title:hover { background: rgba(102, 126, 234, 0.1); }
+        .topics { margin-left: 1rem; font-size: 0.9rem; }
+        .topic { padding: 0.4rem 0.5rem; cursor: pointer; color: #666; border-radius: 4px; }
+        .topic:hover { background: rgba(102, 126, 234, 0.1); color: #667eea; }
+        .content { flex: 1; padding: 3rem; overflow-y: auto; background: white; }
+        .content-inner { max-width: 900px; margin: 0 auto; }
+        h1 { color: #667eea; margin-bottom: 1rem; font-size: 2.5rem; }
+        h2 { color: #764ba2; margin-top: 2rem; margin-bottom: 1rem; }
+        h3 { color: #667eea; margin-top: 1.5rem; margin-bottom: 0.8rem; }
+        .intro-box { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 2rem; border-radius: 12px; margin-bottom: 2rem; }
+        .principle-box { background: #f0f4ff; border-left: 4px solid #667eea; padding: 1.5rem; margin: 1.5rem 0; border-radius: 8px; }
+        .example { background: #e0f2fe; border-left: 4px solid #0284c7; padding: 1rem; margin: 1rem 0; border-radius: 8px; }
+        .key-takeaway { background: #fef3c7; border-left: 4px solid #f59e0b; padding: 1rem; margin: 1rem 0; border-radius: 8px; }
+        .diagram { background: #f9fafb; border: 2px solid #e5e7eb; padding: 1.5rem; margin: 1.5rem 0; border-radius: 8px; font-family: monospace; white-space: pre-wrap; }
+        ul, ol { margin-left: 2rem; margin-bottom: 1rem; }
+        li { margin-bottom: 0.5rem; }
+        .nav-buttons { display: flex; justify-content: space-between; margin-top: 3rem; padding-top: 2rem; border-top: 2px solid #e5e7eb; }
+        .btn { padding: 0.8rem 1.5rem; border: none; border-radius: 8px; cursor: pointer; font-weight: 600; transition: all 0.3s; }
+        .btn-primary { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; }
+        .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4); }
+        .btn-secondary { background: #e5e7eb; color: #374151; }
+        .btn-secondary:hover { background: #d1d5db; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="sidebar">
+            <div class="logo">🚀 GenAI Mastery</div>
+            
+            <div class="module">
+                <div class="module-title" onclick="loadContent('intro')">📚 Introduction</div>
+            </div>
+
+            <div class="module">
+                <div class="module-title">Module 1: ML & GenAI</div>
+                <div class="topics">
+                    <div class="topic" onclick="loadContent('m1-ml')">Machine Learning Basics</div>
+                    <div class="topic" onclick="loadContent('m1-deep')">Deep Learning</div>
+                    <div class="topic" onclick="loadContent('m1-gen')">Generative vs Discriminative</div>
+                </div>
+            </div>
+
+            <div class="module">
+                <div class="module-title">Module 2: AI Agents</div>
+                <div class="topics">
+                    <div class="topic" onclick="loadContent('m2-agents')">What Are AI Agents?</div>
+                    <div class="topic" onclick="loadContent('m2-chatbot')">Chatbot vs Agent</div>
+                    <div class="topic" onclick="loadContent('m2-transformers')">Transformers Intro</div>
+                    <div class="topic" onclick="loadContent('m2-tools')">Tool Calling & MCP</div>
+                    <div class="topic" onclick="loadContent('m2-react')">ReAct Framework</div>
+                </div>
+            </div>
+
+            <div class="module">
+                <div class="module-title">Module 3A: Transformer Internals</div>
+                <div class="topics">
+                    <div class="topic" onclick="loadContent('m3a-arch')">Transformer Architecture</div>
+                    <div class="topic" onclick="loadContent('m3a-attention')">Self-Attention</div>
+                    <div class="topic" onclick="loadContent('m3a-training')">Training & Fine-tuning</div>
+                </div>
+            </div>
+
+            <div class="module">
+                <div class="module-title">Module 3B: LangChain & LangGraph</div>
+                <div class="topics">
+                    <div class="topic" onclick="loadContent('m3b-langchain')">LangChain Fundamentals</div>
+                    <div class="topic" onclick="loadContent('m3b-lcel')">LCEL</div>
+                    <div class="topic" onclick="loadContent('m3b-langgraph')">LangGraph</div>
+                </div>
+            </div>
+
+            <div class="module">
+                <div class="module-title">Module 5: Advanced Agentic Systems</div>
+                <div class="topics">
+                    <div class="topic" onclick="loadContent('m5-patterns')">Agentic Design Patterns</div>
+                    <div class="topic" onclick="loadContent('m5-rag')">Agentic RAG</div>
+                    <div class="topic" onclick="loadContent('m5-production')">Production Architecture</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="content">
+            <div class="content-inner" id="content"></div>
+        </div>
+    </div>
+
+    <script>
+        function loadContent(page) {
+            const content = document.getElementById('content');
+            
+            const pages = {
+                intro: `
+                    <div class="intro-box">
+                        <h1>🚀 Zero-to-Hero GenAI & Agentic AI Engineer</h1>
+                        <p style="font-size: 1.2rem; margin-top: 1rem;">Master the complete journey from foundational ML concepts to building production-grade AI agent systems.</p>
+                    </div>
+
+                    <h2>Welcome to Your Transformation</h2>
+                    <p>This comprehensive curriculum will transform you into a <strong>GenAI Engineer</strong>, <strong>AI Agent Builder</strong>, and <strong>Agentic AI Architect</strong>.</p>
+
+                    <div class="principle-box">
+                        <h3>🧠 Our Teaching Principles</h3>
+                        <ol>
+                            <li>Explain in <strong>simple language first</strong></li>
+                            <li>Use <strong>real-world analogies</strong></li>
+                            <li>Show <strong>connections between concepts</strong></li>
+                            <li>Include <strong>diagrams and flowcharts</strong></li>
+                            <li>Explain <strong>why this matters in real systems</strong></li>
+                        </ol>
+                    </div>
+
+                    <h2>Your Learning Path</h2>
+                    
+                    <h3>Module 1: Foundations of ML & Generative AI</h3>
+                    <p>Build conceptual grounding before touching any tools. Understand the historical context and why LLMs changed everything.</p>
+
+                    <h3>Module 2: LLMs as Agents</h3>
+                    <p>Learn how LLMs evolved from text generators to reasoning, decision-making agents.</p>
+
+                    <div class="key-takeaway">
+                        <strong>💡 Philosophy:</strong> We avoid shallow explanations. Every concept is connected and built for real-world application.
+                    </div>
+
+                    <div class="nav-buttons">
+                        <button class="btn btn-secondary" disabled>Previous</button>
+                        <button class="btn btn-primary" onclick="loadContent('m1-ml')">Start Module 1 →</button>
+                    </div>
+                `,
+
+                'm3a-attention': `
+                    <h1>Self-Attention Mechanism: The Heart of Transformers</h1>
+                    <p><em>Module 3A: Transformers & LLM Internals</em></p>
+
+                    <h2>Why Attention Changed Everything</h2>
+                    <p>Self-attention is the breakthrough that made modern LLMs possible. Let's truly understand it.</p>
+
+                    <div class="principle-box">
+                        <h3>The Core Problem</h3>
+                        <p>How do you make a model understand that in "The animal didn't cross the street because it was too wide," the word "it" refers to "street," not "animal"?</p>
+                        <p><strong>Answer: Attention.</strong> Let every word look at every other word and decide what's important.</p>
+                    </div>
+
+                    <h2>The Intuition Behind Attention</h2>
+
+                    <div class="example">
+                        <strong>Human Reading Analogy:</strong><br>
+                        When you read "The chef prepared the meal and she was very skilled," your brain automatically:
+                        <ul>
+                            <li>Connects "she" → "chef" (pronoun resolution)</li>
+                            <li>Connects "skilled" → "prepared" (what she's skilled at)</li>
+                            <li>Understands "meal" is the object of "prepared"</li>
+                        </ul>
+                        <strong>Attention does this mathematically.</strong>
+                    </div>
+
+                    <h2>Query, Key, Value: The Three Vectors</h2>
+
+                    <p>For each word, we create three different representations:</p>
+
+                    <div class="principle-box">
+                        <h3>The Three Vectors</h3>
+                        <ul>
+                            <li><strong>Query (Q):</strong> "What am I looking for?"</li>
+                            <li><strong>Key (K):</strong> "What information do I have?"</li>
+                            <li><strong>Value (V):</strong> "What is my actual content?"</li>
+                        </ul>
+                    </div>
+
+                    <div class="diagram">Analogy: Library Search
+
+Query (Q): "I need information about cats"
+Keys (K): Book titles/topics
+          - "Dogs and Cats" (relevant!)
+          - "Cars and Trucks" (not relevant)
+          - "Feline Biology" (very relevant!)
+Values (V): Actual book contents
+          
+Attention: Match Query to Keys → Get relevant Values</div>
+
+                    <h2>The Attention Formula</h2>
+
+                    <div class="diagram">Mathematical Process:
+
+1. Calculate Attention Scores
+   Score = Q · K^T
+   (Dot product of Query and Key)
+
+2. Scale the Scores
+   Scaled Score = Score / √(d_k)
+   (Prevent large values)
+
+3. Softmax
+   Weights = softmax(Scaled Score)
+   (Convert to probabilities)
+
+4. Weighted Sum
+   Output = Weights · V
+   (Combine Values based on importance)</div>
+
+                    <h2>Step-by-Step Example</h2>
+
+                    <div class="example">
+                        <strong>Sentence:</strong> "The cat sat"<br><br>
+                        
+                        <strong>For the word "sat":</strong><br><br>
+                        
+                        <strong>Step 1:</strong> Create Q, K, V for "sat"<br>
+                        • Q_sat = [query vector]<br>
+                        • K_sat = [key vector]<br>
+                        • V_sat = [value vector]<br><br>
+                        
+                        <strong>Step 2:</strong> Compare Q_sat with all Keys<br>
+                        • Q_sat · K_the = 0.1 (low relevance)<br>
+                        • Q_sat · K_cat = 0.8 (high relevance!)<br>
+                        • Q_sat · K_sat = 0.6 (medium relevance)<br><br>
+                        
+                        <strong>Step 3:</strong> Softmax → Probabilities<br>
+                        • P_the = 0.05<br>
+                        • P_cat = 0.70<br>
+                        • P_sat = 0.25<br><br>
+                        
+                        <strong>Step 4:</strong> Weighted combination<br>
+                        Output_sat = 0.05×V_the + 0.70×V_cat + 0.25×V_sat<br>
+                        <em>New representation of "sat" enriched with "cat" context!</em>
+                    </div>
+
+                    <h2>Multi-Head Attention</h2>
+
+                    <p>Instead of one attention, run multiple in parallel.</p>
+
+                    <div class="principle-box">
+                        <h3>Why Multiple Heads?</h3>
+                        <p>Different heads can focus on different relationships:</p>
+                        <ul>
+                            <li><strong>Head 1:</strong> Subject-verb relationships</li>
+                            <li><strong>Head 2:</strong> Object relationships</li>
+                            <li><strong>Head 3:</strong> Adjective-noun relationships</li>
+                            <li><strong>Head 4:</strong> Long-range dependencies</li>
+                            <li><strong>...and so on</strong></li>
+                        </ul>
+                    </div>
+
+                    <div class="diagram">Multi-Head Attention:
+
+Input
+  ↓
+ Split into H heads
+  ├─→ [Head 1] → Output 1
+  ├─→ [Head 2] → Output 2
+  ├─→ [Head 3] → Output 3
+  └─→ [Head 8] → Output 8
+        ↓
+    Concatenate
+        ↓
+   [Linear Layer]
+        ↓
+  Final Output</div>
+
+                    <h2>Self-Attention vs Cross-Attention</h2>
+
+                    <div class="example">
+                        <strong>Self-Attention:</strong><br>
+                        • Tokens attend to other tokens in the SAME sequence<br>
+                        • Used in: Encoder, Decoder<br>
+                        • Example: Understanding relationships within a sentence<br><br>
+
+                        <strong>Cross-Attention:</strong><br>
+                        • Decoder tokens attend to Encoder outputs<br>
+                        • Used in: Encoder-Decoder models<br>
+                        • Example: Translation - target language attends to source language
+                    </div>
+
+                    <h2>Masked Self-Attention (Causal Attention)</h2>
+
+                    <p>In GPT-style models, we prevent looking at future tokens.</p>
+
+                    <div class="diagram">Regular Attention (BERT):
+"The cat sat on mat"
+Each word can see ALL words
+(Bidirectional)
+
+Masked Attention (GPT):
+"The cat sat on mat"
+ ↓   ↓↓  ↓↓↓ ↓↓↓↓ ↓↓↓↓↓
+"cat" can only see "The" and "cat"
+"sat" can only see "The", "cat", and "sat"
+(Unidirectional - for generation)</div>
+
+                    <div class="key-takeaway">
+                        <strong>💡 Why Masking?</strong> During training, GPT learns to predict the next token. If it could see future tokens, it would "cheat" and just copy them. Masking forces it to learn actual prediction.
+                    </div>
+
+                    <h2>Attention Visualization</h2>
+
+                    <div class="example">
+                        <strong>Visualizing Attention Weights:</strong><br>
+                        Sentence: "The animal didn't cross the street because it was too wide"<br><br>
+                        When processing "it", attention weights might be:<br>
+                        • "animal": 0.05<br>
+                        • "street": 0.85 ← High attention!<br>
+                        • "wide": 0.07<br>
+                        • Other words: ~0.03<br><br>
+                        <strong>The model correctly understands "it" refers to "street"!</strong>
+                    </div>
+
+                    <h2>Computational Complexity</h2>
+
+                    <div class="principle-box">
+                        <h3>The Attention Trade-off</h3>
+                        <p><strong>Complexity:</strong> O(n²) where n = sequence length</p>
+                        <p><strong>Problem:</strong> Quadratic scaling means long sequences are expensive</p>
+                        <p><strong>Example:</strong> Doubling context window = 4x computation</p>
+                        <p><strong>Solutions:</strong> Sparse attention, sliding window attention, linear attention variants</p>
+                    </div>
+
+                    <h2>Why Attention Works So Well</h2>
+
+                    <ol>
+                        <li><strong>Dynamic:</strong> Adapts based on actual content, not fixed patterns</li>
+                        <li><strong>Long-range:</strong> Can connect words far apart in text</li>
+                        <li><strong>Parallel:</strong> All positions computed simultaneously (unlike RNNs)</li>
+                        <li><strong>Interpretable:</strong> Attention weights show what model focuses on</li>
+                    </ol>
+
+                    <div class="nav-buttons">
+                        <button class="btn btn-secondary" onclick="loadContent('m3a-arch')">← Previous</button>
+                        <button class="btn btn-primary" onclick="loadContent('m3a-training')">Next: Training & Fine-tuning →</button>
+                    </div>
+                `,
+
+                'm3a-training': `
+                    <h1>Training, Fine-tuning, and LLM Lifecycles</h1>
+                    <p><em>Module 3A: Transformers & LLM Internals</em></p>
+
+                    <h2>From Random Weights to ChatGPT</h2>
+                    <p>How does a neural network go from knowing nothing to answering complex questions? Let's trace the journey.</p>
+
+                    <div class="diagram">The Three-Phase Journey:
+
+Phase 1: PRE-TRAINING
+Massive text → Base model (knows language)
+
+Phase 2: FINE-TUNING  
+Specific data → Specialized model
+
+Phase 3: ALIGNMENT
+Human feedback → Safe, helpful model</div>
+
+                    <h2>Phase 1: Pre-Training</h2>
+
+                    <div class="principle-box">
+                        <h3>Self-Supervised Learning</h3>
+                        <p>The model learns from unlabeled data by predicting masked or next tokens.</p>
+                    </div>
+
+                    <div class="example">
+                        <strong>Training Data:</strong> Billions of web pages, books, code, articles<br><br>
+                        <strong>Task:</strong> "The cat sat on the ___" → Predict "mat"<br><br>
+                        <strong>Process:</strong>
+                        <ol>
+                            <li>Model makes prediction: "mat" (50%), "floor" (30%), "dog" (20%)</li>
+                            <li>Compare to actual next word: "mat"</li>
+                            <li>Adjust weights to increase probability of correct answer</li>
+                            <li>Repeat billions of times</li>
+                        </ol>
+                    </div>
+
+                    <div class="diagram">Pre-Training at Scale:
+
+Dataset: 300B+ tokens
+Model: Start with random weights
+Training: 3-6 months on thousands of GPUs
+Cost: $2-10 million
+Result: Base model that understands language</div>
+
+                    <h3>What the Model Learns</h3>
+                    <ul>
+                        <li>Grammar and syntax</li>
+                        <li>Facts and world knowledge</li>
+                        <li>Patterns and reasoning</li>
+                        <li>Context and semantics</li>
+                    </ul>
+
+                    <h2>Base Models vs Instruction-Tuned Models</h2>
+
+                    <div class="principle-box">
+                        <h3>Base Model</h3>
+                        <p>Raw pre-trained model. Good at completion, bad at following instructions.</p>
+                        <div class="example">
+                            <strong>You:</strong> "Write a poem about AI"<br>
+                            <strong>Base Model:</strong> "Write a poem about robots. Write a poem about computers..." <em>(just continues the pattern)</em>
+                        </div>
+
+                        <h3>Instruction-Tuned Model</h3>
+                        <p>Fine-tuned to follow instructions and have conversations.</p>
+                        <div class="example">
+                            <strong>You:</strong> "Write a poem about AI"<br>
+                            <strong>Instruction Model:</strong> <em>(Actually writes a poem as requested)</em>
+                        </div>
+                    </div>
+
+                    <h2>Phase 2: Fine-Tuning</h2>
+
+                    <p>Take a pre-trained model and specialize it for specific tasks.</p>
+
+                    <h3>Types of Fine-Tuning</h3>
+
+                    <div class="example">
+                        <strong>1. Instruction Fine-Tuning (IFT)</strong><br>
+                        Train on instruction-response pairs<br>
+                        Data: "Question: X → Answer: Y"<br>
+                        Result: Model that follows instructions<br><br>
+
+                        <strong>2. Domain Fine-Tuning</strong><br>
+                        Train on domain-specific data<br>
+                        Example: Medical notes → Medical LLM<br>
+                        Result: Expert in that domain<br><br>
+
+                        <strong>3. Task-Specific Fine-Tuning</strong><br>
+                        Train for specific task<br>
+                        Example: Summarization → Summarizer<br>
+                        Result: Optimized for that task
+                    </div>
+
+                    <div class="diagram">Fine-Tuning Process:
+
+1. Start with pre-trained base model
+2. Prepare labeled dataset (1K-100K examples)
+3. Continue training on this data
+4. Model adapts to new task/domain
+5. Evaluate and iterate
+
+Cost: $100-10K (much cheaper than pre-training)
+Time: Hours to days</div>
+
+                    <h2>Phase 3: Alignment (RLHF)</h2>
+
+                    <p><strong>RLHF:</strong> Reinforcement Learning from Human Feedback</p>
+
+                    <div class="principle-box">
+                        <h3>The Alignment Problem</h3>
+                        <p>A model that predicts text well might still:</p>
+                        <ul>
+                            <li>Give harmful advice</li>
+                            <li>Be unhelpful or rude</li>
+                            <li>Generate toxic content</li>
+                        </ul>
+                        <p><strong>RLHF aligns the model with human values.</strong></p>
+                    </div>
+
+                    <h2>RLHF Process</h2>
+
+                    <div class="diagram">RLHF Pipeline:
+
+Step 1: Supervised Fine-Tuning (SFT)
+Model + High-quality human demonstrations → SFT Model
+
+Step 2: Reward Model Training
+• Generate multiple responses to prompts
+• Humans rank them (best to worst)
+• Train reward model to predict human preferences
+
+Step 3: Reinforcement Learning
+• Model generates responses
+• Reward model scores them
+• Adjust model to maximize reward
+• Result: Aligned, helpful, safe model</div>
+
+                    <div class="example">
+                        <strong>RLHF in Action:</strong><br><br>
+                        <strong>Question:</strong> "How do I make money fast?"<br><br>
+                        <strong>Before RLHF:</strong><br>
+                        "Rob a bank, steal credit cards..." <em>(harmful)</em><br><br>
+                        <strong>After RLHF:</strong><br>
+                        "Here are legitimate ways to increase income: freelancing, selling skills online, part-time work..." <em>(helpful, safe)</em>
+                    </div>
+
+                    <h2>Training vs Inference</h2>
+
+                    <div class="principle-box">
+                        <h3>Training</h3>
+                        <p>Teaching the model - adjusting billions of parameters</p>
+                        <ul>
+                            <li>Requires massive compute</li>
+                            <li>Done once (then updates periodically)</li>
+                            <li>Involves backpropagation</li>
+                            <li>Cost: Millions of dollars</li>
+                        </ul>
+
+                        <h3>Inference</h3>
+                        <p>Using the model - running it on new inputs</p>
+                        <ul>
+                            <li>Much less compute</li>
+                            <li>Done billions of times</li>
+                            <li>Forward pass only</li>
+                            <li>Cost: Pennies per request</li>
+                        </ul>
+                    </div>
+
+                    <h2>Modern Training Techniques</h2>
+
+                    <div class="example">
+                        <strong>1. Mixed Precision Training</strong><br>
+                        Use 16-bit instead of 32-bit → Faster, less memory<br><br>
+
+                        <strong>2. Gradient Checkpointing</strong><br>
+                        Trade computation for memory → Train larger models<br><br>
+
+                        <strong>3. Pipeline Parallelism</strong><br>
+                        Split model across GPUs → Scale to huge models<br><br>
+
+                        <strong>4. Data Parallelism</strong><br>
+                        Process different batches on different GPUs → Faster training<br><br>
+
+                        <strong>5. LoRA (Low-Rank Adaptation)</strong><br>
+                        Fine-tune efficiently by updating small adapter layers → Much cheaper
+                    </div>
+
+                    <h2>Scaling Laws</h2>
+
+                    <div class="key-takeaway">
+                        <strong>💡 Key Discovery:</strong> Model performance scales predictably with:
+                        <ul>
+                            <li><strong>Model size</strong> (number of parameters)</li>
+                            <li><strong>Dataset size</strong> (training tokens)</li>
+                            <li><strong>Compute</strong> (GPU hours)</li>
+                        </ul>
+                        Bigger models trained on more data with more compute = better performance (with diminishing returns)
+                    </div>
+
+                    <h2>Inference Optimization</h2>
+
+                    <div class="diagram">Making Models Faster:
+
+1. Quantization
+   32-bit → 8-bit or 4-bit
+   Reduces size, speeds up inference
+
+2. Distillation
+   Large model → Smaller student model
+   Maintains most performance, much faster
+
+3. Caching
+   Store common computations
+   Faster repeated queries
+
+4. Batching
+   Process multiple requests together
+   Better GPU utilization</div>
+
+                    <div class="nav-buttons">
+                        <button class="btn btn-secondary" onclick="loadContent('m3a-attention')">← Previous</button>
+                        <button class="btn btn-primary" onclick="loadContent('m3b-langchain')">Next: LangChain Fundamentals →</button>
+                    </div>
+                `,
+
+                'm3b-langchain': `
+                    <h1>LangChain Fundamentals</h1>
+                    <p><em>Module 3B: LangChain & LangGraph Frameworks</em></p>
+
+                    <h2>From Concept to Production</h2>
+                    <p>We've learned the theory. Now we build real systems. LangChain is the most popular framework for building LLM applications.</p>
+
+                    <div class="principle-box">
+                        <h3>What is LangChain?</h3>
+                        <p>LangChain is a framework for developing applications powered by language models. It provides:</p>
+                        <ul>
+                            <li>Standard interfaces for LLMs</li>
+                            <li>Components for building chains and agents</li>
+                            <li>Integration with 100+ tools and services</li>
+                            <li>Production-ready abstractions</li>
+                        </ul>
+                    </div>
+
+                    <h2>Core Concepts</h2>
+
+                    <h3>1. Components</h3>
+                    <div class="example">
+                        <strong>LLMs:</strong> The language model itself (GPT-4, Claude, etc.)<br>
+                        <strong>Prompts:</strong> Template for inputs<br>
+                        <strong>Chains:</strong> Sequences of calls<br>
+                        <strong>Agents:</strong> LLMs that can use tools<br>
+                        <strong>Memory:</strong> Persist state between calls<br>
+                        <strong>Tools:</strong> Functions the LLM can call
+                    </div>
+
+                    <h3>2. The Basic Chain</h3>
+                    <div class="diagram">Simple Chain:
+
+PromptTemplate → LLM → OutputParser
+
+Example:
+"Translate {text} to {language}" → 
+GPT-4 → 
+Parse response</div>
+
+                    <h2>Retrieval with LangChain</h2>
+                    <p>Building RAG (Retrieval Augmented Generation) systems.</p>
+
+                    <div class="diagram">RAG Pipeline:
+
+1. Document Loading
+   Files → [Loader] → Documents
+
+2. Splitting
+   Documents → [Splitter] → Chunks
+
+3. Embedding
+   Chunks → [Embedding Model] → Vectors
+
+4. Vector Store
+   Vectors → [Store] → Database
+
+5. Retrieval
+   Query → [Search] → Relevant chunks
+
+6. Generation
+   Chunks + Query → [LLM] → Answer</div>
+
+                    <div class="example">
+                        <strong>Real-World RAG Example:</strong><br>
+                        <strong>Goal:</strong> Q&A over company documents<br><br>
+                        <strong>Steps:</strong>
+                        <ol>
+                            <li>Load 1000 PDF documents</li>
+                            <li>Split into 10,000 chunks</li>
+                            <li>Embed each chunk</li>
+                            <li>Store in vector database (Pinecone, Weaviate)</li>
+                            <li>User asks: "What's our return policy?"</li>
+                            <li>Retrieve top 5 relevant chunks</li>
+                            <li>LLM generates answer using retrieved context</li>
+                        </ol>
+                    </div>
+
+                    <h2>Memory in LangChain</h2>
+
+                    <div class="principle-box">
+                        <h3>Types of Memory</h3>
+                        <ul>
+                            <li><strong>ConversationBufferMemory:</strong> Store all messages</li>
+                            <li><strong>ConversationSummaryMemory:</strong> Summarize old messages</li>
+                            <li><strong>ConversationBufferWindowMemory:</strong> Keep last N messages</li>
+                            <li><strong>VectorStoreMemory:</strong> Store in vector DB, retrieve relevant</li>
+                        </ul>
+                    </div>
+
+                    <div class="diagram">Memory Flow:
+
+User: "Hi, I'm John"
+Agent: "Hello John!"
+[Memory stores: User name is John]
+
+User: "What's my name?"
+Agent retrieves memory → "Your name is John"</div>
+
+                    <h2>Tools & Functions</h2>
+
+                    <div class="example">
+                        <strong>Defining a Tool:</strong><br>
+                        <code>
+                        Tool(<br>
+                        &nbsp;&nbsp;name="Calculator",<br>
+                        &nbsp;&nbsp;description="Useful for math calculations",<br>
+                        &nbsp;&nbsp;func=calculate<br>
+                        )
+                        </code>
+                        <br><br>
+                        <strong>LLM decides when to use it based on description!</strong>
+                    </div>
+
+                    <h2>ReAct Agents in LangChain</h2>
+
+                    <div class="diagram">LangChain ReAct Agent:
+
+Initialize:
+• LLM
+• Tools (search, calculator, etc.)
+• Memory
+
+Execution Loop:
+1. User input
+2. Agent reasons (Thought)
+3. Agent takes action (Action)
+4. System executes and returns (Observation)
+5. Repeat until done
+6. Return final answer</div>
+
+                    <h2>Chains vs Agents (Revisited)</h2>
+
+                    <div class="example">
+                        <strong>Simple Chain:</strong> Fixed workflow<br>
+                        <code>
+                        prompt → llm → output_parser
+                        </code>
+                        <br><br>
+
+                        <strong>Sequential Chain:</strong> Multiple steps<br>
+                        <code>
+                        step1 → step2 → step3
+                        </code>
+                        <br><br>
+
+                        <strong>Agent:</strong> Dynamic decisions<br>
+                        <code>
+                        input → [decide] → tool1 → [decide] → tool2 → answer
+                        </code>
+                    </div>
+
+                    <h2>When to Use LangChain</h2>
+
+                    <div class="principle-box">
+                        <h3>LangChain is Great For:</h3>
+                        <ul>
+                            <li>Rapid prototyping</li>
+                            <li>Standard workflows (RAG, chatbots)</li>
+                            <li>Integrating multiple tools</li>
+                            <li>Production apps with common patterns</li>
+                        </ul>
+
+                        <h3>Consider Alternatives When:</h3>
+                        <ul>
+                            <li>You need maximum performance optimization</li>
+                            <li>Very custom workflows that don't fit abstractions</li>
+                            <li>You want minimal dependencies</li>
+                        </ul>
+                    </div>
+
+                    <div class="key-takeaway">
+                        <strong>💡 Key Insight:</strong> LangChain provides building blocks. You combine them like LEGO to build LLM applications. It handles the plumbing so you focus on logic.
+                    </div>
+
+                    <div class="nav-buttons">
+                        <button class="btn btn-secondary" onclick="loadContent('m3a-training')">← Previous</button>
+                        <button class="btn btn-primary" onclick="loadContent('m3b-lcel')">Next: LCEL →</button>
+                    </div>
+                `,
+
+                'm3b-lcel': `
+                    <h1>LCEL: LangChain Expression Language</h1>
+                    <p><em>Module 3B: LangChain & LangGraph Frameworks</em></p>
+
+                    <h2>The Modern Way to Build Chains</h2>
+                    <p>LCEL is LangChain's declarative way to compose chains. It's cleaner, more powerful, and the recommended approach.</p>
+
+                    <div class="principle-box">
+                        <h3>What is LCEL?</h3>
+                        <p>LCEL is a declarative syntax for building chains using the pipe (|) operator. Think Unix pipes for LLM workflows.</p>
+                    </div>
+
+                    <div class="diagram">Unix Pipes Analogy:
+
+cat file.txt | grep "error" | wc -l
+
+LCEL:
+prompt | llm | output_parser</div>
+
+                    <h2>Why LCEL?</h2>
+
+                    <div class="example">
+                        <strong>Old Way (Verbose):</strong><br>
+                        <code>
+                        chain = LLMChain(<br>
+                        &nbsp;&nbsp;llm=llm,<br>
+                        &nbsp;&nbsp;prompt=prompt,<br>
+                        &nbsp;&nbsp;output_parser=parser<br>
+                        )<br>
+                        result = chain.run(input)
+                        </code>
+                        <br><br>
+
+                        <strong>LCEL Way (Clean):</strong><br>
+                        <code>
+                        chain = prompt | llm | parser<br>
+                        result = chain.invoke(input)
+                        </code>
+                    </div>
+
+                    <h2>LCEL Benefits</h2>
+
+                    <div class="principle-box">
+                        <ul>
+                            <li><strong>Streaming:</strong> Get tokens as they're generated</li>
+                            <li><strong>Async:</strong> Non-blocking execution</li>
+                            <li><strong>Parallel:</strong> Run multiple chains simultaneously</li>
+                            <li><strong>Fallbacks:</strong> Automatic retry with different LLMs</li>
+                            <li><strong>Batch:</strong> Process multiple inputs efficiently</li>
+                        </ul>
+                    </div>
+
+                    <h2>Core LCEL Operators</h2>
+
+                    <h3>1. Pipe (|)</h3>
+                    <p>Chain components sequentially</p>
+                    <div class="diagram">A | B | C
+Output of A → Input of B → Output of B → Input of C</div>
+
+                    <h3>2. RunnableParallel</h3>
+                    <p>Run multiple chains in parallel</p>
+                    <div class="diagram">{
+  "summary": summarize_chain,
+  "sentiment": sentiment_chain
+}
+Both run at the same time!</div>
+
+                    <h3>3. RunnableLambda</h3>
+                    <p>Custom functions in chains</p>
+                    <div class="example">
+                        <code>
+                        def custom_logic(x):<br>
+                        &nbsp;&nbsp;return x.upper()<br><br>
+                        chain = prompt | llm | RunnableLambda(custom_logic)
+                        </code>
+                    </div>
+
+                    <h2>Real-World LCEL Examples</h2>
+
+                    <div class="example">
+                        <strong>Example 1: RAG Chain</strong><br>
+                        <code>
+                        rag_chain = (<br>
+                        &nbsp;&nbsp;{"context": retriever, "question": RunnablePassthrough()}<br>
+                        &nbsp;&nbsp;| prompt<br>
+                        &nbsp;&nbsp;| llm<br>
+                        &nbsp;&nbsp;| StrOutputParser()<br>
+                        )
+                        </code>
+                        <br><br>
+
+                        <strong>Example 2: Multi-Step Analysis</strong><br>
+                        <code>
+                        analysis_chain = (<br>
+                        &nbsp;&nbsp;extract_data<br>
+                        &nbsp;&nbsp;| {<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;"statistics": calculate_stats,<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;"insights": generate_insights<br>
+                        &nbsp;&nbsp;}<br>
+                        &nbsp;&nbsp;| combine_results<br>
+                        )
+                        </code>
+                    </div>
+
+                    <h2>Streaming with LCEL</h2>
+
+                    <div class="diagram">Streaming Flow:
+
+chain.stream(input)
+  ↓
+Token 1 → "The"
+Token 2 → "cat"
+Token 3 → "sat"
+...
+(Real-time output as LLM generates)</div>
+
+                    <div class="key-takeaway">
+                        <strong>💡 Why Streaming Matters:</strong> Better UX! Users see responses immediately instead of waiting for the entire completion. Critical for chat applications.
+                    </div>
+
+                    <h2>Error Handling & Fallbacks</h2>
+
+                    <div class="example">
+                        <strong>Automatic Fallback:</strong><br>
+                        <code>
+                        chain = (prompt | llm).with_fallbacks([<br>
+                        &nbsp;&nbsp;prompt | backup_llm1,<br>
+                        &nbsp;&nbsp;prompt | backup_llm2<br>
+                        ])
+                        </code>
+                        <br><br>
+                        If main LLM fails → Try backup_llm1 → Try backup_llm2
+                    </div>
+
+                    <h2>Batching for Efficiency</h2>
+
+                    <div class="diagram">Sequential Processing:
+Request 1 → Wait → Response 1
+Request 2 → Wait → Response 2
+Request 3 → Wait → Response 3
+(Slow!)
+
+Batch Processing:
+[Request 1, 2, 3] → Process together → [Response 1, 2, 3]
+(Fast!)</div>
+
+                    <div class="nav-buttons">
+                        <button class="btn btn-secondary" onclick="loadContent('m3b-langchain')">← Previous</button>
+                        <button class="btn btn-primary" onclick="loadContent('m3b-langgraph')">Next: LangGraph →</button>
+                    </div>
+                `,
+
+                'm3b-langgraph': `
+                    <h1>LangGraph: Stateful Multi-Agent Workflows</h1>
+                    <p><em>Module 3B: LangChain & LangGraph Frameworks</em></p>
+
+                    <h2>Beyond Linear Chains</h2>
+                    <p>Chains are great for linear workflows. But what if you need loops, conditions, and complex state management? Enter LangGraph.</p>
+
+                    <div class="principle-box">
+                        <h3>What is LangGraph?</h3>
+                        <p>LangGraph extends LangChain with:</p>
+                        <ul>
+                            <li>Cyclical graphs (loops, branches)</li>
+                            <li>Persistent state management</li>
+                            <li>Multi-agent orchestration</li>
+                            <li>Human-in-the-loop workflows</li>
+                        </ul>
+                    </div>
+
+                    <h2>Why Chains Break and Graphs Scale</h2>
+
+                    <div class="diagram">Chain Limitation:
+
+A → B → C → D
+(What if C determines you need to go back to B?)
+
+Graph Solution:
+
+    A
+    ↓
+    B ←─┐
+    ↓   │
+    C ──┘ (can loop back!)
+    ↓
+    D</div>
+
+                    <div class="example">
+                        <strong>Real Scenarios Requiring Graphs:</strong>
+                        <ul>
+                            <li><strong>Iterative refinement:</strong> Generate → Review → Revise → Review...</li>
+                            <li><strong>Multi-agent collaboration:</strong> Researcher → Writer → Editor → Researcher...</li>
+                            <li><strong>Conditional flows:</strong> If X then Y, else Z</li>
+                            <li><strong>Human approval:</strong> Agent proposes → Human reviews → Agent continues</li>
+                        </ul>
+                    </div>
+
+                    <h2>LangGraph Core Concepts</h2>
+
+                    <h3>1. State</h3>
+                    <p>Shared data structure that persists across the graph.</p>
+                    <div class="example">
+                        <code>
+                        class AgentState(TypedDict):<br>
+                        &nbsp;&nbsp;messages: List[Message]<br>
+                        &nbsp;&nbsp;current_task: str<br>
+                        &nbsp;&nbsp;results: Dict<br>
+                        &nbsp;&nbsp;iterations: int
+                        </code>
+                    </div>
+
+                    <h3>2. Nodes</h3>
+                    <p>Functions that process state and return updated state.</p>
+                    <div class="example">
+                        <code>
+                        def researcher(state):<br>
+                        &nbsp;&nbsp;# Search and gather info<br>
+                        &nbsp;&nbsp;state["results"] = search(state["query"])<br>
+                        &nbsp;&nbsp;return state
+                        </code>
+                    </div>
+
+                    <h3>3. Edges</h3>
+                    <p>Connections between nodes (can be conditional).</p>
+                    <div class="diagram">Edges:
+
+Normal: A → B (always go to B)
+Conditional: A → [decision] → B or C (depends on state)</div>
+
+                    <h2>Building a LangGraph</h2>
+
+                    <div class="diagram">Graph Construction:
+
+1. Define State Schema
+2. Create Nodes (functions)
+3. Build Graph
+4. Add Nodes
+5. Add Edges
+6. Set Entry and End Points
+7. Compile Graph</div>
+
+                    <h2>Multi-Agent Workflow Example</h2>
+
+                    <div class="example">
+                        <strong>Scenario:</strong> Research Report Generation
+                        <br><br>
+                        <strong>Agents:</strong>
+                        <ul>
+                            <li><strong>Researcher:</strong> Gathers information</li>
+                            <li><strong>Writer:</strong> Creates draft</li>
+                            <li><strong>Critic:</strong> Reviews quality</li>
+                            <li><strong>Editor:</strong> Finalizes</li>
+                        </ul>
+                    </div>
+
+                    <div class="diagram">Workflow Graph:
+
+    START
+      ↓
+  Researcher (gather data)
+      ↓
+   Writer (create draft)
+      ↓
+   Critic (review)
+      ↓
+   [Good enough?]
+    ↙     ↘
+  YES      NO
+   ↓        ↓
+ Editor   Writer (revise)
+   ↓        ↓
+  END   (loop back to Critic)</div>
+
+                    <h2>Stateful Graphs in Action</h2>
+
+                    <div class="example">
+                        <strong>State Evolution:</strong>
+                        <br><br>
+                        <strong>Step 1 (Researcher):</strong><br>
+                        State = {query: "AI safety", results: [...], iteration: 1}
+                        <br><br>
+                        <strong>Step 2 (Writer):</strong><br>
+                        State = {query: "AI safety", results: [...], draft: "...", iteration: 1}
+                        <br><br>
+                        <strong>Step 3 (Critic):</strong><br>
+                        State = {... , feedback: "needs more sources", iteration: 1}
+                        <br><br>
+                        <strong>Step 4 (Back to Researcher):</strong><br>
+                        State = {... , results: [...more...], iteration: 2}
+                    </div>
+
+                    <h2>Supervisor Pattern</h2>
+
+                    <p>A common multi-agent pattern where a supervisor coordinates specialized workers.</p>
+
+                    <div class="diagram">Supervisor Pattern:
+
+        SUPERVISOR
+        (decides what to do next)
+            ↓
+    ┌───────┼───────┐
+    ↓       ↓       ↓
+  Agent1  Agent2  Agent3
+  (Code)  (Test)  (Doc)
+    ↓       ↓       ↓
+    └───────┼───────┘
+            ↓
+        SUPERVISOR
+        (synthesize results)</div>
+
+                    <div class="example">
+                        <strong>Supervisor's Role:</strong>
+                        <ul>
+                            <li>Analyze user request</li>
+                            <li>Delegate to appropriate agent</li>
+                            <li>Monitor progress</li>
+                            <li>Combine results</li>
+                            <li>Decide if done or continue</li>
+                        </ul>
+                    </div>
+
+                    <h2>Human-in-the-Loop</h2>
+
+                    <p>Add breakpoints where humans can review and intervene.</p>
+
+                    <div class="diagram">Human-in-the-Loop Flow:
+
+Agent generates plan
+      ↓
+  [INTERRUPT]
+      ↓
+Human reviews and approves/modifies
+      ↓
+Agent continues execution
+      ↓
+  [INTERRUPT]
+      ↓
+Human reviews final output
+      ↓
+    Complete</div>
+
+                    <div class="key-takeaway">
+                        <strong>💡 Critical for Production:</strong> Human-in-the-loop prevents agents from taking unintended actions. Essential for high-stakes applications like financial transactions, medical decisions, or content publication.
+                    </div>
+
+                    <h2>Persistence and Checkpointing</h2>
+
+                    <div class="principle-box">
+                        <h3>Benefits</h3>
+                        <ul>
+                            <li><strong>Resume after failure:</strong> Don't lose progress</li>
+                            <li><strong>Audit trail:</strong> See every state transition</li>
+                            <li><strong>Time travel:</strong> Go back to previous states</li>
+                            <li><strong>Debugging:</strong> Inspect state at any point</li>
+                        </ul>
+                    </div>
+
+                    <h2>When to Use LangGraph</h2>
+
+                    <div class="principle-box">
+                        <h3>Use LangGraph When:</h3>
+                        <ul>
+                            <li>Need loops or conditional flows</li>
+                            <li>Multiple agents need to collaborate</li>
+                            <li>State must persist across steps</li>
+                            <li>Human approval is required</li>
+                            <li>Complex decision trees</li>
+                        </ul>
+
+                        <h3>Use Simple Chains When:</h3>
+                        <ul>
+                            <li>Linear workflow</li>
+                            <li>No branching logic</li>
+                            <li>Simple state management</li>
+                        </ul>
+                    </div>
+
+                    <h2>Real-World LangGraph Applications</h2>
+
+                    <div class="example">
+                        <strong>1. Customer Support System</strong><br>
+                        Classifier → Specialist Agent → Human Escalation (if needed) → Resolution
+                        <br><br>
+                        <strong>2. Code Review Pipeline</strong><br>
+                        Code Generation → Testing → Security Scan → Human Review → Deploy
+                        <br><br>
+                        <strong>3. Content Creation</strong><br>
+                        Research → Outline → Draft → Edit → Fact-Check → Publish
+                    </div>
+
+                    <div class="key-takeaway">
+                        <strong>🔗 Bridge to Module 5:</strong> We've learned the frameworks. Next, we move to <strong>advanced agentic systems</strong> — production patterns, agentic RAG, and enterprise architecture.
+                    </div>
+
+                    <div class="nav-buttons">
+                        <button class="btn btn-secondary" onclick="loadContent('m3b-lcel')">← Previous</button>
+                        <button class="btn btn-primary" onclick="loadContent('m5-patterns')">Start Module 5 →</button>
+                    </div>
+                `,
+
+                'm3a-arch': `
+                    <h1>Transformer Architecture Deep Dive</h1>
+                    <p><em>Module 3A: Transformers & LLM Internals</em></p>
+
+                    <h2>Understanding the Engine</h2>
+                    <p>Now we go deep. Understanding Transformer architecture helps you debug issues, optimize performance, and design better AI systems.</p>
+
+                    <div class="principle-box">
+                        <h3>The Original Paper</h3>
+                        <p>"Attention Is All You Need" (Vaswani et al., 2017) introduced Transformers. The key innovation: <strong>self-attention mechanism</strong> replaced recurrence and convolution.</p>
+                    </div>
+
+                    <h2>High-Level Architecture</h2>
+
+                    <div class="diagram">Classic Transformer (Encoder-Decoder):
+
+        INPUT
+          ↓
+     [Embedding]
+          ↓
+     [Positional Encoding]
+          ↓
+    ┌─────────────┐
+    │   ENCODER   │
+    │             │
+    │ • Self-     │
+    │   Attention │
+    │ • Feed-     │
+    │   Forward   │
+    │ (×N layers) │
+    └──────┬──────┘
+           ↓
+    ┌─────────────┐
+    │   DECODER   │
+    │             │
+    │ • Self-     │
+    │   Attention │
+    │ • Cross-    │
+    │   Attention │
+    │ • Feed-     │
+    │   Forward   │
+    │ (×N layers) │
+    └──────┬──────┘
+           ↓
+     [Output Layer]
+           ↓
+        OUTPUT</div>
+
+                    <h2>Key Components Explained</h2>
+
+                    <h3>1. Input Embeddings</h3>
+                    <p>Convert tokens (words/subwords) into dense vectors.</p>
+
+                    <div class="example">
+                        <strong>Example:</strong><br>
+                        Token: "cat" → Embedding: [0.2, 0.8, -0.3, 0.5, ..., 0.1]<br>
+                        (A vector of 768 or 1024 dimensions typically)
+                        <br><br>
+                        <strong>Why?</strong> Neural networks need numbers, not words. Embeddings capture semantic meaning in mathematical space.
+                    </div>
+
+                    <h3>2. Positional Encoding</h3>
+                    <p>Since Transformers process all tokens simultaneously, we need to tell the model the order of words.</p>
+
+                    <div class="diagram">Without Positional Encoding:
+"Dog bites man" = "Man bites dog"
+(Model can't tell the difference!)
+
+With Positional Encoding:
+Each position gets a unique signal
+Position 1: [specific pattern]
+Position 2: [different pattern]
+Position 3: [another pattern]</div>
+
+                    <h3>3. Self-Attention Layer</h3>
+                    <p>The magic sauce. Lets each word "attend to" (look at) all other words in the sequence.</p>
+
+                    <div class="example">
+                        <strong>Sentence:</strong> "The animal didn't cross the street because it was too tired"
+                        <br><br>
+                        <strong>Question:</strong> What does "it" refer to?
+                        <br><br>
+                        <strong>Self-Attention:</strong> Helps the model understand "it" → "animal" (not "street")
+                        <br>By computing attention scores between "it" and all other words.
+                    </div>
+
+                    <h3>4. Feed-Forward Network</h3>
+                    <p>After attention, each position goes through the same neural network independently.</p>
+
+                    <div class="diagram">Process:
+Input → Layer Norm → Self-Attention → Add & Norm → 
+Feed-Forward → Add & Norm → Output</div>
+
+                    <h3>5. Multi-Head Attention</h3>
+                    <p>Instead of one attention mechanism, use multiple "heads" looking at different aspects.</p>
+
+                    <div class="example">
+                        <strong>Analogy:</strong> Reading a sentence with different goals:
+                        <ul>
+                            <li><strong>Head 1:</strong> Focuses on syntax (grammar)</li>
+                            <li><strong>Head 2:</strong> Focuses on semantics (meaning)</li>
+                            <li><strong>Head 3:</strong> Focuses on relationships (dependencies)</li>
+                            <li><strong>Head 4-8:</strong> Other patterns...</li>
+                        </ul>
+                        Results are combined for richer understanding.
+                    </div>
+
+                    <h2>Encoder vs Decoder</h2>
+
+                    <div class="principle-box">
+                        <h3>Encoder (BERT-style)</h3>
+                        <p><strong>Purpose:</strong> Understand and encode meaning</p>
+                        <ul>
+                            <li>Bidirectional (sees whole input)</li>
+                            <li>Good for: Classification, embedding, understanding</li>
+                            <li>Example: BERT, RoBERTa</li>
+                        </ul>
+
+                        <h3>Decoder (GPT-style)</h3>
+                        <p><strong>Purpose:</strong> Generate new text</p>
+                        <ul>
+                            <li>Unidirectional (sees only previous tokens)</li>
+                            <li>Good for: Text generation, completion</li>
+                            <li>Example: GPT-3, GPT-4</li>
+                        </ul>
+
+                        <h3>Encoder-Decoder (T5-style)</h3>
+                        <p><strong>Purpose:</strong> Transform one sequence to another</p>
+                        <ul>
+                            <li>Best of both worlds</li>
+                            <li>Good for: Translation, summarization</li>
+                            <li>Example: T5, BART</li>
+                        </ul>
+                    </div>
+
+                    <h2>The Attention Mechanism (Simplified)</h2>
+
+                    <div class="diagram">Computing Attention:
+
+For each word, create three vectors:
+• Query (Q): "What am I looking for?"
+• Key (K): "What do I contain?"
+• Value (V): "What do I represent?"
+
+Then:
+1. Compare Query with all Keys
+   → Get attention scores
+2. Softmax scores
+   → Convert to probabilities
+3. Weight Values by scores
+   → Get context-aware representation</div>
+
+                    <div class="example">
+                        <strong>Concrete Example:</strong><br>
+                        Sentence: "The cat sat on the mat"<br><br>
+                        For the word "sat":<br>
+                        • Query: "What relates to sitting?"<br>
+                        • Compares with Keys of all words<br>
+                        • High attention to: "cat" (who sat), "mat" (where)<br>
+                        • Low attention to: "the" (less relevant)<br>
+                        • Output: Representation of "sat" enriched with context
+                    </div>
+
+                    <h2>Layer Normalization & Residual Connections</h2>
+
+                    <div class="principle-box">
+                        <h3>Layer Normalization</h3>
+                        <p>Keeps values in a stable range, helps training.</p>
+
+                        <h3>Residual Connections</h3>
+                        <p>Add input directly to output of layer (skip connection).</p>
+                        <p><strong>Why?</strong> Allows gradients to flow better during training, enables deeper networks.</p>
+                    </div>
+
+                    <div class="diagram">Residual Connection:
+
+Input → [Sublayer] → Output
+  ↓                    ↑
+  └────────(+)─────────┘
+     (Add original input)</div>
+
+                    <h2>How It All Works Together</h2>
+
+                    <div class="diagram">Information Flow (GPT-style):
+
+"The cat" → [Embeddings + Positions] → 
+  → [Layer 1: Self-Attention] "cat relates to The"
+  → [Layer 1: Feed-Forward] Process
+  → [Layer 2: Self-Attention] Deeper patterns
+  → [Layer 2: Feed-Forward] Process
+  → ... (N layers)
+  → [Layer N: Self-Attention] Rich understanding
+  → [Layer N: Feed-Forward] Process
+  → [Output Layer] Predict next token: "sat"</div>
+
+                    <h2>Scale and Modern Implementations</h2>
+
+                    <div class="example">
+                        <strong>GPT-3 Scale:</strong>
+                        <ul>
+                            <li>96 Transformer layers</li>
+                            <li>96 attention heads</li>
+                            <li>12,288 hidden dimensions</li>
+                            <li>175 billion parameters</li>
+                            <li>Context window: 2,048 tokens (originally)</li>
+                        </ul>
+                        <br>
+                        <strong>GPT-4 (Estimated):</strong>
+                        <ul>
+                            <li>120+ layers</li>
+                            <li>~1.7 trillion parameters</li>
+                            <li>Context window: 128K tokens</li>
+                            <li>Multimodal (text + images)</li>
+                        </ul>
+                    </div>
+
+                    <div class="key-takeaway">
+                        <strong>💡 Key Insight:</strong> The Transformer's power comes from: (1) Parallel processing (faster than RNNs), (2) Long-range dependencies (attention to any token), (3) Scalability (can grow to trillions of parameters).
+                    </div>
+
+                    <h2>Why This Matters for Practitioners</h2>
+
+                    <ol>
+                        <li><strong>Context Windows:</strong> Understanding limits helps you design prompts</li>
+                        <li><strong>Token Costs:</strong> More layers = more computation = higher cost</li>
+                        <li><strong>Attention Patterns:</strong> Knowing how attention works helps debug unexpected behaviors</li>
+                        <li><strong>Model Selection:</strong> Choose encoder vs decoder based on task</li>
+                    </ol>
+
+                    <div class="nav-buttons">
+                        <button class="btn btn-secondary" onclick="loadContent('m2-react')">← Previous</button>
+                        <button class="btn btn-primary" onclick="loadContent('m3a-attention')">Next: Self-Attention Deep Dive →</button>
+                    </div>
+                `,
+
+                'm2-tools': `
+                    <h1>Tool Calling & Model Context Protocol (MCP)</h1>
+                    <p><em>Module 2: LLMs as Agents (Decision-Makers)</em></p>
+
+                    <h2>Giving LLMs Superpowers</h2>
+                    <p>An LLM alone is powerful but limited to its training data. <strong>Tools</strong> give it the ability to interact with the real world.</p>
+
+                    <div class="principle-box">
+                        <h3>What Are Tools?</h3>
+                        <p>Tools are functions/APIs that an LLM can call to perform actions or retrieve information it doesn't inherently have.</p>
+                    </div>
+
+                    <div class="diagram">Without Tools:
+User: "What's 847 * 392?"
+LLM: "Approximately 332,000" ❌ (Wrong!)
+
+With Calculator Tool:
+User: "What's 847 * 392?"
+LLM: [Thinks] "I need to calculate" → [Calls calculator(847, 392)]
+Tool returns: 332,024
+LLM: "The answer is 332,024" ✓</div>
+
+                    <h2>Common Tool Categories</h2>
+
+                    <div class="example">
+                        <strong>1. Information Retrieval</strong>
+                        <ul>
+                            <li>Web search</li>
+                            <li>Database queries</li>
+                            <li>Document retrieval</li>
+                            <li>API calls (weather, stocks, news)</li>
+                        </ul>
+
+                        <strong>2. Computation</strong>
+                        <ul>
+                            <li>Calculator</li>
+                            <li>Code execution</li>
+                            <li>Data analysis</li>
+                            <li>Mathematical operations</li>
+                        </ul>
+
+                        <strong>3. Action-Taking</strong>
+                        <ul>
+                            <li>Send emails</li>
+                            <li>Update databases</li>
+                            <li>Create calendar events</li>
+                            <li>File operations</li>
+                        </ul>
+
+                        <strong>4. Creative Tools</strong>
+                        <ul>
+                            <li>Image generation</li>
+                            <li>Audio synthesis</li>
+                            <li>Video editing</li>
+                        </ul>
+                    </div>
+
+                    <h2>How Tool Calling Works</h2>
+
+                    <div class="diagram">Tool Calling Flow:
+
+1. User Query
+   "Book me a flight to Boston"
+   ↓
+2. LLM Reasoning
+   "I need flight search API"
+   ↓
+3. LLM Generates Tool Call
+   search_flights(origin="SFO", destination="BOS", date="2025-01-15")
+   ↓
+4. System Executes Tool
+   [Calls actual API]
+   ↓
+5. Tool Returns Results
+   {flights: [...], prices: [...]}
+   ↓
+6. LLM Receives Results
+   Formats and presents to user
+   ↓
+7. Response
+   "I found 5 flights. The cheapest is $320..."</div>
+
+                    <h2>Function Calling vs Tools</h2>
+
+                    <div class="principle-box">
+                        <h3>Terminology Clarification</h3>
+                        <p>These terms are often used interchangeably, but there's a subtle difference:</p>
+                        <ul>
+                            <li><strong>Function Calling:</strong> The mechanism/API that allows LLMs to invoke functions</li>
+                            <li><strong>Tools:</strong> The actual functions/capabilities available to the LLM</li>
+                        </ul>
+                        <p><em>Think: Function calling is the "how," tools are the "what."</em></p>
+                    </div>
+
+                    <div class="example">
+                        <strong>Example Setup:</strong><br><br>
+                        <strong>Function Calling (Mechanism):</strong><br>
+                        LLM can call functions in JSON format<br><br>
+                        <strong>Tools (Capabilities):</strong>
+                        <ul>
+                            <li>get_weather(location)</li>
+                            <li>search_web(query)</li>
+                            <li>send_email(to, subject, body)</li>
+                        </ul>
+                    </div>
+
+                    <h2>Model Context Protocol (MCP)</h2>
+                    <p>MCP is a new standard by Anthropic for connecting AI systems to data sources and tools.</p>
+
+                    <div class="principle-box">
+                        <h3>What Problem Does MCP Solve?</h3>
+                        <p>Before MCP, every developer had to:</p>
+                        <ul>
+                            <li>Write custom integrations for each tool</li>
+                            <li>Handle authentication differently for each service</li>
+                            <li>Maintain separate code for each LLM provider</li>
+                        </ul>
+                        <p><strong>MCP provides a universal standard</strong> — like USB for AI tools.</p>
+                    </div>
+
+                    <div class="diagram">Without MCP:
+Your App → Custom Code → Tool A
+        → Custom Code → Tool B
+        → Custom Code → Tool C
+(3 different implementations)
+
+With MCP:
+Your App → MCP Protocol → Tool A (MCP Server)
+                      → Tool B (MCP Server)
+                      → Tool C (MCP Server)
+(One standard interface)</div>
+
+                    <h2>MCP Architecture</h2>
+
+                    <div class="example">
+                        <strong>Three Components:</strong>
+                        <ol>
+                            <li><strong>MCP Hosts:</strong> Your AI application (Claude, your agent)</li>
+                            <li><strong>MCP Servers:</strong> Expose tools/resources via MCP</li>
+                            <li><strong>MCP Protocol:</strong> Standardized communication layer</li>
+                        </ol>
+                    </div>
+
+                    <div class="diagram">MCP in Action:
+
+Claude Desktop (Host)
+    ↓ (MCP Protocol)
+    ├─→ Google Drive MCP Server → Access files
+    ├─→ Slack MCP Server → Send messages
+    └─→ Database MCP Server → Query data
+
+All using the same protocol!</div>
+
+                    <h2>Benefits of MCP</h2>
+
+                    <div class="key-takeaway">
+                        <strong>💡 Why MCP Matters:</strong>
+                        <ul>
+                            <li><strong>Reusability:</strong> Build a tool once, use with any MCP host</li>
+                            <li><strong>Security:</strong> Standardized authentication and permissions</li>
+                            <li><strong>Discoverability:</strong> Hosts can auto-discover available tools</li>
+                            <li><strong>Ecosystem:</strong> Growing library of pre-built MCP servers</li>
+                        </ul>
+                    </div>
+
+                    <h2>Real-World Tool Calling Example</h2>
+
+                    <div class="example">
+                        <strong>Scenario:</strong> Research Assistant Agent
+                        <br><br>
+                        <strong>User:</strong> "What are the latest developments in quantum computing?"
+                        <br><br>
+                        <strong>Agent's Tool Usage:</strong>
+                        <ol>
+                            <li><strong>web_search("quantum computing recent developments")</strong> → Gets recent articles</li>
+                            <li><strong>fetch_arxiv("quantum computing 2024")</strong> → Gets academic papers</li>
+                            <li><strong>summarize_documents(papers)</strong> → Condenses findings</li>
+                            <li><strong>check_citations(summary)</strong> → Verifies sources</li>
+                        </ol>
+                        <strong>Response:</strong> Comprehensive, sourced answer with latest info
+                    </div>
+
+                    <h2>Best Practices for Tool Design</h2>
+
+                    <div class="principle-box">
+                        <h3>Design Principles</h3>
+                        <ol>
+                            <li><strong>Clear Names:</strong> make it obvious what the tool does</li>
+                            <li><strong>Good Descriptions:</strong> Help the LLM understand when to use it</li>
+                            <li><strong>Simple Parameters:</strong> Fewer parameters = easier for LLM to use correctly</li>
+                            <li><strong>Error Handling:</strong> Return helpful error messages</li>
+                            <li><strong>Deterministic:</strong> Same input should give same output when possible</li>
+                        </ol>
+                    </div>
+
+                    <div class="nav-buttons">
+                        <button class="btn btn-secondary" onclick="loadContent('m2-transformers')">← Previous</button>
+                        <button class="btn btn-primary" onclick="loadContent('m2-react')">Next: ReAct Framework →</button>
+                    </div>
+                `,
+
+                'm2-react': `
+                    <h1>ReAct: Reasoning + Acting</h1>
+                    <p><em>Module 2: LLMs as Agents (Decision-Makers)</em></p>
+
+                    <h2>The Framework That Powers Modern Agents</h2>
+                    <p>ReAct (Reasoning and Acting) is perhaps the most important pattern in agentic AI. It's how agents think through problems step by step.</p>
+
+                    <div class="principle-box">
+                        <h3>Core Concept</h3>
+                        <p><strong>ReAct</strong> interleaves reasoning (thinking) and acting (using tools) in an iterative loop until the task is complete.</p>
+                    </div>
+
+                    <div class="diagram">Traditional Approach:
+Query → LLM → Answer
+(One shot, no tools)
+
+ReAct Approach:
+Query → [Thought] → [Action] → [Observation] → 
+[Thought] → [Action] → [Observation] → ... → Answer
+(Iterative loop with tools)</div>
+
+                    <h2>The ReAct Loop Explained</h2>
+
+                    <div class="diagram">ReAct Cycle:
+
+1. THOUGHT
+   "What do I need to do next?"
+   ↓
+2. ACTION
+   Use a tool or give final answer
+   ↓
+3. OBSERVATION
+   See the result of the action
+   ↓
+(Repeat until task is complete)</div>
+
+                    <h2>Real-World ReAct Example</h2>
+
+                    <div class="example">
+                        <strong>Task:</strong> "Who is the current CEO of the company that makes iPhone?"
+                        <br><br>
+                        <strong>Thought 1:</strong> "I need to find out which company makes iPhone"<br>
+                        <strong>Action 1:</strong> Search("who makes iPhone")<br>
+                        <strong>Observation 1:</strong> "Apple Inc. manufactures the iPhone"<br><br>
+                        <strong>Thought 2:</strong> "Now I need to find Apple's current CEO"<br>
+                        <strong>Action 2:</strong> Search("Apple CEO 2024")<br>
+                        <strong>Observation 2:</strong> "Tim Cook is the CEO of Apple"<br><br>
+                        <strong>Thought 3:</strong> "I have the answer"<br>
+                        <strong>Action 3:</strong> Finish("Tim Cook is the current CEO of Apple Inc., the company that makes iPhone")
+                    </div>
+
+                    <div class="key-takeaway">
+                        <strong>💡 Key Insight:</strong> Notice how the agent breaks down the problem into sub-questions, uses tools to gather information, and reasons about what to do next. This is dramatically more powerful than trying to answer in one shot.
+                    </div>
+
+                    <h2>Components of ReAct</h2>
+
+                    <h3>1. Thought (Reasoning)</h3>
+                    <p>The agent's internal monologue about what to do next.</p>
+                    <div class="example">
+                        <strong>Good Thoughts:</strong>
+                        <ul>
+                            <li>"I need to find the current stock price"</li>
+                            <li>"The search returned no results, I should try a different query"</li>
+                            <li>"I have all the information needed to answer"</li>
+                        </ul>
+                    </div>
+
+                    <h3>2. Action (Tool Use)</h3>
+                    <p>Calling a tool or providing the final answer.</p>
+                    <div class="diagram">Action Types:
+• Search(query) - Search the web
+• Calculate(expression) - Do math
+• Lookup(term) - Find specific info
+• Finish(answer) - Provide final response</div>
+
+                    <h3>3. Observation (Feedback)</h3>
+                    <p>The result returned from the action.</p>
+                    <div class="example">
+                        <strong>Observation Examples:</strong>
+                        <ul>
+                            <li>"Search returned 10 results about quantum computing"</li>
+                            <li>"Calculator returned: 42"</li>
+                            <li>"Error: Page not found"</li>
+                        </ul>
+                    </div>
+
+                    <h2>Why ReAct Works So Well</h2>
+
+                    <div class="principle-box">
+                        <h3>Advantages</h3>
+                        <ol>
+                            <li><strong>Transparency:</strong> You can see the agent's reasoning process</li>
+                            <li><strong>Debuggability:</strong> Easy to identify where things went wrong</li>
+                            <li><strong>Flexibility:</strong> Can adapt to unexpected situations</li>
+                            <li><strong>Accuracy:</strong> Reduces hallucinations by grounding in tool outputs</li>
+                            <li><strong>Composability:</strong> Can chain multiple tools together</li>
+                        </ol>
+                    </div>
+
+                    <h2>ReAct vs Other Patterns</h2>
+
+                    <div class="diagram">Direct LLM Response:
+Fast, but limited to training data
+
+Chain-of-Thought (CoT):
+Better reasoning, but still no tools
+
+ReAct:
+Reasoning + Tools = Most Powerful</div>
+
+                    <h2>Agent Core Components (Revisited)</h2>
+
+                    <p>Now that we understand ReAct, let's see how it connects to the core agent components:</p>
+
+                    <div class="principle-box">
+                        <h3>1. Planning</h3>
+                        <p>Breaking complex tasks into manageable steps.</p>
+                        <ul>
+                            <li>Task decomposition</li>
+                            <li>Sub-goal generation</li>
+                            <li>Strategy selection</li>
+                        </ul>
+
+                        <h3>2. Tool Use</h3>
+                        <p>Selecting and executing appropriate tools.</p>
+                        <ul>
+                            <li>Tool selection logic</li>
+                            <li>Parameter generation</li>
+                            <li>Result interpretation</li>
+                        </ul>
+
+                        <h3>3. Memory</h3>
+                        <p>Maintaining context throughout execution.</p>
+                        <ul>
+                            <li><strong>Short-term:</strong> Current conversation/task</li>
+                            <li><strong>Working memory:</strong> Intermediate results</li>
+                            <li><strong>Long-term:</strong> Past interactions, learned preferences</li>
+                        </ul>
+                    </div>
+
+                    <h2>Agent Execution Flow</h2>
+
+                    <div class="diagram">Complete Agent Flow:
+
+User Input
+    ↓
+[Planning Module]
+Break down into sub-tasks
+    ↓
+[ReAct Loop]
+    ├─→ Thought: "What's next?"
+    ├─→ Action: Use tool
+    ├─→ Observation: Get result
+    └─→ [Memory] Store progress
+         ↓
+    Repeat until done
+         ↓
+[Response Generation]
+Format final answer
+    ↓
+User Output</div>
+
+                    <h2>Common ReAct Challenges</h2>
+
+                    <div class="example">
+                        <strong>1. Infinite Loops</strong><br>
+                        Agent keeps trying the same failed action<br>
+                        <em>Solution: Max iteration limits, loop detection</em>
+                        <br><br>
+                        <strong>2. Premature Termination</strong><br>
+                        Agent finishes before gathering all needed info<br>
+                        <em>Solution: Better prompting, verification steps</em>
+                        <br><br>
+                        <strong>3. Tool Misuse</strong><br>
+                        Agent calls wrong tools or with wrong parameters<br>
+                        <em>Solution: Better tool descriptions, examples</em>
+                        <br><br>
+                        <strong>4. High Cost</strong><br>
+                        Many iterations = many API calls = expensive<br>
+                        <em>Solution: Optimization, caching, hybrid approaches</em>
+                    </div>
+
+                    <h2>ReAct in LangChain</h2>
+
+                    <p>LangChain implements ReAct agents out of the box. Here's the conceptual flow:</p>
+
+                    <div class="diagram">LangChain ReAct Agent:
+
+1. Initialize agent with tools
+2. Agent receives user input
+3. Loop:
+   - LLM generates thought + action
+   - System executes action
+   - LLM receives observation
+   - Continue or finish
+4. Return final answer</div>
+
+                    <div class="key-takeaway">
+                        <strong>🔗 Bridge to Module 3:</strong> We've learned how agents think and act. Next, we'll dive deep into <strong>Transformer internals</strong> to understand the engine that powers all of this, then explore <strong>LangChain and LangGraph</strong> — the frameworks for building production agent systems.
+                    </div>
+
+                    <div class="nav-buttons">
+                        <button class="btn btn-secondary" onclick="loadContent('m2-tools')">← Previous</button>
+                        <button class="btn btn-primary" onclick="loadContent('m3a-arch')">Next: Transformer Architecture →</button>
+                    </div>
+                `,
+                
+                'm1-ml': `
+                    <h1>Machine Learning Basics</h1>
+                    <p><em>Module 1: Foundations of ML & Generative AI</em></p>
+
+                    <h2>What is Machine Learning?</h2>
+                    <p>Imagine teaching a child to recognize dogs. Instead of writing explicit rules like "has four legs, fur, tail," you show them hundreds of dog pictures. They learn the pattern themselves. <strong>That's machine learning.</strong></p>
+
+                    <div class="principle-box">
+                        <h3>Core Definition</h3>
+                        <p><strong>Machine Learning</strong> is the science of getting computers to learn patterns from data without being explicitly programmed for every scenario.</p>
+                    </div>
+
+                    <h2>The Two Main Paradigms</h2>
+
+                    <h3>1. Supervised Learning</h3>
+                    <p>Learning from labeled examples (like flashcards with answers on the back).</p>
+
+                    <div class="example">
+                        <strong>Real-World Example:</strong> Email spam detection
+                        <ul>
+                            <li><strong>Input:</strong> Email text</li>
+                            <li><strong>Label:</strong> "Spam" or "Not Spam"</li>
+                            <li><strong>Process:</strong> Model learns patterns from thousands of labeled emails</li>
+                            <li><strong>Result:</strong> Can classify new emails automatically</li>
+                        </ul>
+                    </div>
+
+                    <div class="diagram">Training Data Flow:
+
+Email 1: "Buy now!" → Spam ✓
+Email 2: "Meeting at 3pm" → Not Spam ✓
+Email 3: "Win $1000!" → Spam ✓
+     ↓
+Model learns patterns
+     ↓
+New Email: "Claim your prize" → Spam (predicted)</div>
+
+                    <h3>2. Unsupervised Learning</h3>
+                    <p>Finding hidden patterns in unlabeled data (like sorting a messy closet without instructions).</p>
+
+                    <div class="example">
+                        <strong>Real-World Example:</strong> Customer segmentation
+                        <ul>
+                            <li><strong>Input:</strong> Customer purchase history (no labels)</li>
+                            <li><strong>Process:</strong> Model finds natural groupings</li>
+                            <li><strong>Result:</strong> "Budget shoppers," "Premium buyers," "Seasonal customers"</li>
+                        </ul>
+                    </div>
+
+                    <h2>Regression vs Classification</h2>
+
+                    <h3>Regression: Predicting Numbers</h3>
+                    <p>Predicting continuous values (temperature, price, age).</p>
+                    <div class="diagram">Examples:
+• House price: $250,000, $310,000, $420,000
+• Temperature: 72°F, 68°F, 75°F
+• Stock price: $142.50, $138.20, $145.80</div>
+
+                    <h3>Classification: Predicting Categories</h3>
+                    <p>Predicting which group something belongs to.</p>
+                    <div class="diagram">Examples:
+• Email: Spam / Not Spam
+• Medical: Disease A / Disease B / Healthy
+• Image: Cat / Dog / Bird</div>
+
+                    <div class="key-takeaway">
+                        <strong>💡 Key Insight:</strong> Both regression and classification are <strong>discriminative models</strong> — they learn to distinguish between options. This is fundamentally different from generative AI, which we'll cover later.
+                    </div>
+
+                    <h2>Why This Matters for GenAI</h2>
+                    <ol>
+                        <li><strong>Foundation:</strong> LLMs are built on the same core principles</li>
+                        <li><strong>Contrast:</strong> Understanding discriminative models helps you grasp what makes generative models special</li>
+                        <li><strong>Integration:</strong> Modern AI systems combine both approaches</li>
+                        <li><strong>Problem-solving:</strong> Not every problem needs an LLM — sometimes classical ML is better and cheaper</li>
+                    </ol>
+
+                    <div class="nav-buttons">
+                        <button class="btn btn-secondary" onclick="loadContent('intro')">← Back</button>
+                        <button class="btn btn-primary" onclick="loadContent('m1-deep')">Next: Deep Learning →</button>
+                    </div>
+                `,
+
+                'm1-deep': `
+                    <h1>Deep Learning</h1>
+                    <p><em>Module 1: Foundations of ML & Generative AI</em></p>
+
+                    <h2>From Machine Learning to Deep Learning</h2>
+                    <p>If Machine Learning is learning patterns from data, <strong>Deep Learning</strong> is learning patterns of patterns of patterns... using artificial neural networks.</p>
+
+                    <div class="principle-box">
+                        <h3>The Breakthrough Moment</h3>
+                        <p>Traditional ML required humans to manually define "features" (e.g., for face detection: "look for two circular shapes above a triangular shape"). Deep Learning learns these features automatically from raw data.</p>
+                    </div>
+
+                    <h2>What Are Neural Networks?</h2>
+                    <p>Think of a neural network as a factory assembly line where each station transforms the input slightly, until the final product emerges.</p>
+
+                    <div class="diagram">Input Layer → Hidden Layers → Output Layer
+
+Example: Image Classification
+  Image    → [Layer 1: Edges] → [Layer 2: Shapes] → [Layer 3: Patterns] → "Cat"
+  Pixels         ↓                   ↓                    ↓
+            Detects lines      Detects circles      Recognizes face
+            and edges         and triangles         structure</div>
+
+                    <h3>Simple Analogy</h3>
+                    <div class="example">
+                        <strong>Assembly Line Analogy:</strong>
+                        <ul>
+                            <li><strong>Raw material (input):</strong> Image pixels</li>
+                            <li><strong>Station 1:</strong> Detects basic edges</li>
+                            <li><strong>Station 2:</strong> Combines edges into shapes</li>
+                            <li><strong>Station 3:</strong> Combines shapes into objects</li>
+                            <li><strong>Final product (output):</strong> "This is a cat!"</li>
+                        </ul>
+                    </div>
+
+                    <h2>Types of Neural Networks</h2>
+
+                    <h3>1. Feedforward Neural Networks (FNN)</h3>
+                    <p>The simplest form — information flows in one direction.</p>
+
+                    <h3>2. Convolutional Neural Networks (CNN)</h3>
+                    <p>Specialized for images and visual data.</p>
+                    <div class="diagram">Use cases:
+• Image classification
+• Object detection
+• Face recognition
+• Medical image analysis</div>
+
+                    <h3>3. Recurrent Neural Networks (RNN)</h3>
+                    <p>Have memory — can process sequences where order matters.</p>
+                    <div class="diagram">Use cases:
+• Text generation
+• Language translation
+• Time series prediction
+• Speech recognition</div>
+
+                    <h3>4. Transformers (The Game Changer)</h3>
+                    <p>The architecture that powers modern LLMs.</p>
+
+                    <div class="key-takeaway">
+                        <strong>💡 Key Evolution:</strong> RNNs struggled with long sequences (they "forgot" earlier words). Transformers solved this with the <strong>attention mechanism</strong> — allowing models to focus on relevant parts of the input, no matter how far apart.
+                    </div>
+
+                    <h2>The Deep Learning Revolution</h2>
+                    <div class="principle-box">
+                        <h3>Three Key Enablers</h3>
+                        <ol>
+                            <li><strong>Data:</strong> Internet created massive datasets</li>
+                            <li><strong>Compute:</strong> GPUs made training feasible</li>
+                            <li><strong>Algorithms:</strong> Better architectures (especially Transformers)</li>
+                        </ol>
+                    </div>
+
+                    <div class="nav-buttons">
+                        <button class="btn btn-secondary" onclick="loadContent('m1-ml')">← Previous</button>
+                        <button class="btn btn-primary" onclick="loadContent('m1-gen')">Next: Generative vs Discriminative →</button>
+                    </div>
+                `,
+
+                'm1-gen': `
+                    <h1>Generative vs Discriminative Models</h1>
+                    <p><em>Module 1: Foundations of ML & Generative AI</em></p>
+
+                    <h2>The Fundamental Divide</h2>
+                    <p>This is perhaps the most important conceptual shift in understanding modern AI.</p>
+
+                    <div class="principle-box">
+                        <h3>Core Distinction</h3>
+                        <ul>
+                            <li><strong>Discriminative Models:</strong> Learn boundaries between categories ("Is this A or B?")</li>
+                            <li><strong>Generative Models:</strong> Learn to create new examples ("Make me something like A")</li>
+                        </ul>
+                    </div>
+
+                    <h2>Discriminative Models: The Judge</h2>
+                    <p>Think of discriminative models as judges in a competition. They evaluate and categorize, but they don't create.</p>
+
+                    <div class="example">
+                        <strong>Real-World Examples:</strong>
+                        <ul>
+                            <li><strong>Email Filter:</strong> "Is this spam?" (Yes/No)</li>
+                            <li><strong>Image Classifier:</strong> "Is this a cat or dog?"</li>
+                            <li><strong>Fraud Detection:</strong> "Is this transaction legitimate?"</li>
+                        </ul>
+                    </div>
+
+                    <h2>Generative Models: The Creator</h2>
+                    <p>Generative models are like artists. They understand patterns so well that they can create new, original examples.</p>
+
+                    <div class="example">
+                        <strong>Real-World Examples:</strong>
+                        <ul>
+                            <li><strong>ChatGPT:</strong> Generates human-like text</li>
+                            <li><strong>DALL-E:</strong> Creates images from text</li>
+                            <li><strong>GitHub Copilot:</strong> Writes code</li>
+                        </ul>
+                    </div>
+
+                    <div class="key-takeaway">
+                        <strong>💡 The Revolution:</strong> Before 2017, most commercial AI was discriminative. Transformers enabled practical generative models at scale, unlocking entirely new capabilities: content creation, creative assistance, interactive conversation, and problem-solving.
+                    </div>
+
+                    <div class="nav-buttons">
+                        <button class="btn btn-secondary" onclick="loadContent('m1-deep')">← Previous</button>
+                        <button class="btn btn-primary" onclick="loadContent('m2-agents')">Start Module 2 →</button>
+                    </div>
+                `,
+
+                'm2-agents': `
+                    <h1>What Are AI Agents?</h1>
+                    <p><em>Module 2: LLMs as Agents (Decision-Makers)</em></p>
+
+                    <h2>From Text Generator to Decision Maker</h2>
+                    <p>This is where things get exciting. LLMs started as text completers. Then someone asked: "What if we let them DO things?"</p>
+
+                    <div class="principle-box">
+                        <h3>Core Definition</h3>
+                        <p>An <strong>AI Agent</strong> is a system that uses an LLM to:</p>
+                        <ol>
+                            <li><strong>Perceive</strong> its environment (read inputs)</li>
+                            <li><strong>Reason</strong> about what to do (think through steps)</li>
+                            <li><strong>Act</strong> on the world (use tools, make changes)</li>
+                            <li><strong>Learn</strong> from outcomes (adapt based on results)</li>
+                        </ol>
+                    </div>
+
+                    <div class="diagram">Traditional LLM:
+User: "What's the weather?"
+LLM: "I don't have access to current weather data."
+
+AI Agent:
+User: "What's the weather?"
+Agent: [Thinks] "I need current data"
+       [Acts] Calls weather API
+       [Responds] "It's 72°F and sunny"</div>
+
+                    <h2>The Restaurant Analogy</h2>
+
+                    <div class="example">
+                        <strong>LLM = Menu Reader</strong>
+                        <ul>
+                            <li>Can describe every dish beautifully</li>
+                            <li>Can explain cooking techniques</li>
+                            <li>But can't actually make you food</li>
+                        </ul>
+
+                        <strong>Agent = Personal Chef</strong>
+                        <ul>
+                            <li>Asks about your preferences</li>
+                            <li>Checks what's in the fridge</li>
+                            <li>Plans a meal</li>
+                            <li>Actually cooks it</li>
+                            <li>Adjusts based on taste</li>
+                        </ul>
+                    </div>
+
+                    <div class="key-takeaway">
+                        <strong>💡 The Shift:</strong> LLMs answer questions. Agents solve problems. This transforms AI from a reference tool into an active assistant.
+                    </div>
+
+                    <h2>Real-World Agent Examples</h2>
+
+                    <div class="principle-box">
+                        <h3>Current Production Agents</h3>
+                        <ul>
+                            <li><strong>Customer Support:</strong> Handle tickets, search knowledge bases, escalate when needed</li>
+                            <li><strong>Data Analysis:</strong> Query databases, create visualizations, generate insights</li>
+                            <li><strong>Code Generation:</strong> Understand requirements, write code, debug, test</li>
+                            <li><strong>Research:</strong> Search multiple sources, synthesize information, cite sources</li>
+                        </ul>
+                    </div>
+
+                    <div class="nav-buttons">
+                        <button class="btn btn-secondary" onclick="loadContent('m1-gen')">← Previous</button>
+                        <button class="btn btn-primary" onclick="loadContent('m2-chatbot')">Next: Chatbot vs Agent →</button>
+                    </div>
+                `,
+
+                'm2-chatbot': `
+                    <h1>Chatbot vs Agent: Understanding the Difference</h1>
+                    <p><em>Module 2: LLMs as Agents (Decision-Makers)</em></p>
+
+                    <h2>The Critical Distinction</h2>
+                    <p>Many people use these terms interchangeably. They shouldn't. The difference is fundamental and defines what's possible.</p>
+
+                    <div class="principle-box">
+                        <h3>Quick Definitions</h3>
+                        <ul>
+                            <li><strong>Chatbot:</strong> A conversational interface that responds to user inputs</li>
+                            <li><strong>Agent:</strong> An autonomous system that can reason, plan, and take actions to achieve goals</li>
+                        </ul>
+                    </div>
+
+                    <h2>The Spectrum of AI Systems</h2>
+
+                    <div class="diagram">Simple → Complex
+
+[Rule-based Bot] → [Smart Chatbot] → [Basic Agent] → [Advanced Agent]
+     ↓                   ↓                  ↓               ↓
+  If/Then        LLM responds       Uses 1-2 tools   Multi-step reasoning
+  Scripts        to prompts         Simple tasks     Complex workflows
+  No learning    No tools           Limited memory   Full autonomy</div>
+
+                    <h2>Key Differences Breakdown</h2>
+
+                    <h3>1. Goal vs Response</h3>
+                    <div class="example">
+                        <strong>Chatbot:</strong><br>
+                        User: "I need to book a flight"<br>
+                        Bot: "I can help with that! What's your destination?"<br>
+                        <em>(Waits for user to provide all info step by step)</em>
+                        <br><br>
+                        <strong>Agent:</strong><br>
+                        User: "I need to book a flight to NYC next week under $400"<br>
+                        Agent: [Searches flights] [Compares prices] [Checks calendar]<br>
+                        "I found 3 options. The best is Tuesday at 2pm for $385. Should I book it?"<br>
+                        <em>(Takes initiative, completes sub-tasks autonomously)</em>
+                    </div>
+
+                    <h3>2. Tool Usage</h3>
+                    <div class="diagram">Chatbot:
+• No external tools
+• Only uses training data
+• Cannot access real-time info
+• Cannot perform actions
+
+Agent:
+• Uses multiple tools
+• Accesses APIs, databases, calculators
+• Gets real-time information
+• Performs actions (send emails, update records)</div>
+
+                    <h3>3. Memory & Context</h3>
+                    <div class="example">
+                        <strong>Chatbot:</strong><br>
+                        Short-term: Remembers conversation within current session<br>
+                        Long-term: Usually none or very limited<br><br>
+                        <strong>Agent:</strong><br>
+                        Short-term: Full conversation context<br>
+                        Long-term: Can store and recall past interactions, user preferences, completed tasks
+                    </div>
+
+                    <h3>4. Decision Making</h3>
+                    <div class="diagram">Chatbot Decision Process:
+User input → Generate response → Return to user
+
+Agent Decision Process:
+User goal → Break into sub-tasks → Choose tools → Execute → 
+Observe results → Adjust plan → Continue until goal achieved</div>
+
+                    <h2>Chain vs Agent</h2>
+                    <p>Another important distinction in the agentic world.</p>
+
+                    <div class="principle-box">
+                        <h3>Chain</h3>
+                        <p>A <strong>chain</strong> is a predetermined sequence of steps executed in order.</p>
+                        <ul>
+                            <li>Fixed workflow</li>
+                            <li>No branching based on outcomes</li>
+                            <li>Predictable execution</li>
+                            <li>Faster and more reliable</li>
+                        </ul>
+
+                        <h3>Agent</h3>
+                        <p>An <strong>agent</strong> dynamically decides what to do next based on observations.</p>
+                        <ul>
+                            <li>Flexible workflow</li>
+                            <li>Adapts to results</li>
+                            <li>Can handle unexpected scenarios</li>
+                            <li>More powerful but slower</li>
+                        </ul>
+                    </div>
+
+                    <div class="example">
+                        <strong>Chain Example:</strong> Document summarization pipeline<br>
+                        1. Load document<br>
+                        2. Split into chunks<br>
+                        3. Summarize each chunk<br>
+                        4. Combine summaries<br>
+                        <em>(Always follows these 4 steps)</em>
+                        <br><br>
+                        <strong>Agent Example:</strong> Research assistant<br>
+                        1. Read query<br>
+                        2. Decide: Need more info? → Search web<br>
+                        3. Results unclear? → Search academic papers<br>
+                        4. Found conflicting info? → Search for recent news<br>
+                        5. Synthesize and present<br>
+                        <em>(Adapts based on what it finds)</em>
+                    </div>
+
+                    <h2>When to Use Each</h2>
+
+                    <div class="principle-box">
+                        <h3>Use a Chatbot When:</h3>
+                        <ul>
+                            <li>You need simple Q&A</li>
+                            <li>Information retrieval is the main goal</li>
+                            <li>Budget/speed is critical</li>
+                            <li>Users guide the entire interaction</li>
+                        </ul>
+
+                        <h3>Use a Chain When:</h3>
+                        <ul>
+                            <li>Workflow is well-defined and consistent</li>
+                            <li>Reliability is paramount</li>
+                            <li>Steps are always the same</li>
+                            <li>Speed matters</li>
+                        </ul>
+
+                        <h3>Use an Agent When:</h3>
+                        <ul>
+                            <li>Problem requires multi-step reasoning</li>
+                            <li>Workflow needs to adapt based on results</li>
+                            <li>External tools/APIs are needed</li>
+                            <li>Autonomy and intelligence matter more than speed</li>
+                        </ul>
+                    </div>
+
+                    <div class="diagram">Complexity vs Capability
+
+Chatbot         Chain           Agent
+   ↓             ↓               ↓
+Simplest     Structured      Most Powerful
+Fastest      Reliable        Most Flexible
+Cheapest     Predictable     Most Expensive</div>
+
+                    <div class="key-takeaway">
+                        <strong>💡 Real-World Wisdom:</strong> Many production systems use a hybrid approach — chatbot interface, chain for reliable workflows, agent for complex problem-solving. Don't over-engineer; use the simplest solution that works.
+                    </div>
+
+                    <div class="nav-buttons">
+                        <button class="btn btn-secondary" onclick="loadContent('m2-agents')">← Previous</button>
+                        <button class="btn btn-primary" onclick="loadContent('m2-transformers')">Next: Transformers Intro →</button>
+                    </div>
+                `,
+
+                'm2-transformers': `
+                    <h1>Transformers: The Engine of Modern AI</h1>
+                    <p><em>Module 2: LLMs as Agents (Decision-Makers)</em></p>
+
+                    <h2>Why Transformers Changed Everything</h2>
+                    <p>In 2017, Google researchers published "Attention Is All You Need" — the paper that revolutionized AI. Let's understand why.</p>
+
+                    <div class="principle-box">
+                        <h3>The Problem Before Transformers</h3>
+                        <p>RNNs (Recurrent Neural Networks) processed text sequentially, one word at a time. This caused:</p>
+                        <ul>
+                            <li><strong>Forgetting:</strong> Long-range dependencies were lost</li>
+                            <li><strong>Slowness:</strong> Sequential processing couldn't be parallelized</li>
+                            <li><strong>Context limits:</strong> Struggled with long documents</li>
+                        </ul>
+                    </div>
+
+                    <h2>The Transformer Solution</h2>
+                    <p>Transformers process all words simultaneously and use <strong>attention</strong> to understand relationships.</p>
+
+                    <div class="diagram">RNN Approach (Sequential):
+"The" → "cat" → "sat" → "on" → "the" → "mat"
+  ↓      ↓       ↓      ↓      ↓       ↓
+Each word processed one at a time (slow)
+Later words forget earlier context
+
+Transformer Approach (Parallel):
+["The", "cat", "sat", "on", "the", "mat"]
+           ↓
+All words processed simultaneously (fast)
+Attention mechanism connects all words</div>
+
+                    <h2>Encoder-Decoder Architecture</h2>
+
+                    <h3>The Three Architectures</h3>
+
+                    <div class="diagram">1. Encoder-Only (BERT-style)
+   Input Text → [Encoder] → Understanding
+   Best for: Classification, sentiment analysis
+
+2. Decoder-Only (GPT-style)
+   Input Text → [Decoder] → Generate Next Words
+   Best for: Text generation, completion
+
+3. Encoder-Decoder (T5, BART)
+   Input → [Encoder] → Meaning → [Decoder] → Output
+   Best for: Translation, summarization</div>
+
+                    <h3>Seq2Seq (Sequence-to-Sequence)</h3>
+                    <p>The pattern where you transform one sequence into another.</p>
+
+                    <div class="example">
+                        <strong>Seq2Seq Examples:</strong>
+                        <ul>
+                            <li>English sentence → French sentence (Translation)</li>
+                            <li>Long article → Short summary (Summarization)</li>
+                            <li>Question → Answer (Q&A)</li>
+                            <li>Code comment → Code (Code generation)</li>
+                        </ul>
+                    </div>
+
+                    <div class="diagram">Seq2Seq with Encoder-Decoder:
+
+Input: "Translate to French: Hello, how are you?"
+         ↓
+    [ENCODER]
+    Understands the meaning
+         ↓
+    Meaning Vector
+         ↓
+    [DECODER]
+    Generates French
+         ↓
+Output: "Bonjour, comment allez-vous?"</div>
+
+                    <h2>Tokens: The Building Blocks</h2>
+                    <p>LLMs don't see words — they see tokens.</p>
+
+                    <div class="principle-box">
+                        <h3>What Are Tokens?</h3>
+                        <p>Tokens are chunks of text (parts of words, whole words, or punctuation) that the model processes.</p>
+                    </div>
+
+                    <div class="example">
+                        <strong>Tokenization Example:</strong><br>
+                        Text: "ChatGPT is amazing!"<br>
+                        Tokens: ["Chat", "G", "PT", " is", " amazing", "!"]<br>
+                        <em>(~6 tokens)</em>
+                        <br><br>
+                        <strong>Why This Matters:</strong>
+                        <ul>
+                            <li>Context window = token limit (e.g., 128K tokens)</li>
+                            <li>Cost is calculated per token</li>
+                            <li>Generation speed depends on tokens</li>
+                            <li>Roughly 1 token ≈ 4 characters in English</li>
+                        </ul>
+                    </div>
+
+                    <h2>Next-Token Prediction</h2>
+                    <p>This is the core of how LLMs work.</p>
+
+                    <div class="diagram">Training Process:
+
+Input: "The cat sat on the ___"
+Model predicts: "mat" (high probability)
+                "floor" (medium probability)
+                "pizza" (low probability)
+
+The model learns: Given these words, what comes next?</div>
+
+                    <div class="key-takeaway">
+                        <strong>💡 Insight:</strong> Everything an LLM does — answering questions, writing code, reasoning — emerges from this simple task: predicting the next token. The magic is in the scale and the data.
+                    </div>
+
+                    <h2>GPT-Style Models</h2>
+                    <p>GPT (Generative Pre-trained Transformer) is a decoder-only architecture optimized for generation.</p>
+
+                    <div class="diagram">GPT Training:
+
+1. Pre-training Phase:
+   Internet text → Learn language patterns → Base model
+
+2. Instruction Tuning:
+   Q&A pairs → Learn to follow instructions → Chat model
+
+3. RLHF (Reinforcement Learning from Human Feedback):
+   Human ratings → Align with human preferences → Safe, helpful model</div>
+
+                    <div class="example">
+                        <strong>GPT Model Evolution:</strong>
+                        <ul>
+                            <li><strong>GPT-1:</strong> Proof of concept (117M params)</li>
+                            <li><strong>GPT-2:</strong> Better, but still limited (1.5B params)</li>
+                            <li><strong>GPT-3:</strong> Breakthrough moment (175B params)</li>
+                            <li><strong>GPT-4:</strong> Multimodal, reasoning (1.7T params estimated)</li>
+                        </ul>
+                    </div>
+
+                    <h2>Why This Matters for Agents</h2>
+                    <p>Understanding Transformers helps you understand agent capabilities:</p>
+
+                    <ol>
+                        <li><strong>Context Window:</strong> How much an agent can "remember" in one interaction</li>
+                        <li><strong>Token Costs:</strong> Why complex agents are expensive to run</li>
+                        <li><strong>Limitations:</strong> Why agents sometimes lose track or make errors</li>
+                        <li><strong>Optimization:</strong> How to design efficient agent systems</li>
+                    </ol>
+
+                    <div class="key-takeaway">
+                        <strong>🔗 Connection Forward:</strong> We've learned the engine. Next, we'll explore how agents use <strong>tools</strong> to extend their capabilities beyond text generation.
+                    </div>
+
+                    <div class="nav-buttons">
+                        <button class="btn btn-secondary" onclick="loadContent('m2-chatbot')">← Previous</button>
+                        <button class="btn btn-primary" onclick="loadContent('m2-tools')">Next: Tool Calling & MCP →</button>
+                    </div>
+                `,
+
+                'm5-patterns': `
+                    <h1>Agentic Design Patterns</h1>
+                    <p><em>Module 5: Advanced Agentic Systems & Agentic RAG</em></p>
+
+                    <h2>From Developer to Architect</h2>
+                    <p>You've learned the pieces. Now we assemble them into production-grade systems. These are battle-tested patterns from real deployments.</p>
+
+                    <div class="principle-box">
+                        <h3>What Are Design Patterns?</h3>
+                        <p>Reusable solutions to common problems. Instead of reinventing the wheel, use proven architectures that work at scale.</p>
+                    </div>
+
+                    <h2>Pattern 1: ReAct (Reasoning + Acting)</h2>
+
+                    <div class="diagram">ReAct Pattern:
+
+Loop until solved:
+  ├─ Thought: "What should I do?"
+  ├─ Action: Use tool or finish
+  └─ Observation: See result
+
+Best for: Single-agent problem-solving</div>
+
+                    <div class="example">
+                        <strong>Use Cases:</strong> Research queries, data analysis, calculations<br>
+                        <strong>Strengths:</strong> Transparent, debuggable, flexible<br>
+                        <strong>Weaknesses:</strong> Can be slow, expensive with many iterations
+                    </div>
+
+                    <h2>Pattern 2: Reflection</h2>
+
+                    <p>Agent critiques its own output and iteratively improves.</p>
+
+                    <div class="diagram">Reflection Pattern:
+
+Generate → Critique → Revise → Critique → Revise → Done
+
+Example:
+Write code → Find bugs → Fix → Review → Final code</div>
+
+                    <div class="example">
+                        <strong>Implementation:</strong>
+                        <ol>
+                            <li>Generator agent creates initial output</li>
+                            <li>Critic agent reviews and provides feedback</li>
+                            <li>Generator revises based on feedback</li>
+                            <li>Repeat until quality threshold met</li>
+                        </ol>
+                    </div>
+
+                    <h2>Pattern 3: Tool Use (Function Calling)</h2>
+
+                    <div class="principle-box">
+                        <h3>Key Principles</h3>
+                        <ul>
+                            <li><strong>Single responsibility:</strong> Each tool does one thing well</li>
+                            <li><strong>Clear descriptions:</strong> LLM understands when to use it</li>
+                            <li><strong>Composability:</strong> Tools can be chained</li>
+                            <li><strong>Idempotency:</strong> Same input = same output (when possible)</li>
+                        </ul>
+                    </div>
+
+                    <h2>Pattern 4: Planning</h2>
+
+                    <p>Break complex tasks into manageable sub-tasks before execution.</p>
+
+                    <div class="diagram">Planning Pattern:
+
+User Request
+  ↓
+[Planner] Creates step-by-step plan
+  ↓
+[Executor] Executes each step
+  ↓
+[Synthesizer] Combines results</div>
+
+                    <div class="example">
+                        <strong>Example: "Analyze competitor websites"</strong>
+                        <br><br>
+                        <strong>Plan:</strong>
+                        <ol>
+                            <li>Identify top 5 competitors</li>
+                            <li>Scrape each website</li>
+                            <li>Extract key features</li>
+                            <li>Compare pricing</li>
+                            <li>Analyze messaging</li>
+                            <li>Generate report</li>
+                        </ol>
+                        <br>
+                        <strong>Then execute plan step-by-step</strong>
+                    </div>
+
+                    <h2>Pattern 5: Multi-Agent Collaboration</h2>
+
+                    <h3>5a. Hierarchical (Supervisor)</h3>
+                    <div class="diagram">Supervisor
+     ├─→ Specialist 1
+     ├─→ Specialist 2
+     └─→ Specialist 3
+
+Supervisor delegates and synthesizes</div>
+
+                    <h3>5b. Sequential</h3>
+                    <div class="diagram">Agent 1 → Agent 2 → Agent 3 → Result
+
+Each agent builds on previous work</div>
+
+                    <h3>5c. Parallel</h3>
+                    <div class="diagram">     Task
+         ↓
+    ┌────┼────┐
+    ↓    ↓    ↓
+  Agent Agent Agent
+    1    2    3
+    └────┼────┘
+         ↓
+     Combine</div>
+
+                    <h2>Pattern 6: Memory Management</h2>
+
+                    <div class="principle-box">
+                        <h3>Memory Strategies</h3>
+                        <ul>
+                            <li><strong>Short-term:</strong> Current conversation (in context window)</li>
+                            <li><strong>Working memory:</strong> Temporary facts for current task</li>
+                            <li><strong>Long-term:</strong> Persistent user preferences, history</li>
+                            <li><strong>Semantic memory:</strong> Vector store for retrieval</li>
+                        </ul>
+                    </div>
+
+                    <div class="example">
+                        <strong>Hybrid Memory Architecture:</strong>
+                        <ul>
+                            <li>Recent messages: In prompt (immediate access)</li>
+                            <li>Session facts: Key-value store (fast lookup)</li>
+                            <li>Historical data: Vector DB (semantic search)</li>
+                            <li>User profile: Relational DB (structured data)</li>
+                        </ul>
+                    </div>
+
+                    <h2>Pattern 7: Structured Output</h2>
+
+                    <p>Force the LLM to return data in a specific format.</p>
+
+                    <div class="diagram">Methods:
+
+1. JSON Mode: LLM returns valid JSON
+2. Function Calling: Use tool schema
+3. Grammar Constraints: Enforce specific structure
+4. Post-parsing: Validate and clean output</div>
+
+                    <div class="key-takeaway">
+                        <strong>💡 Why Critical:</strong> Unstructured LLM output is hard to program with. Structured output enables reliable downstream processing.
+                    </div>
+
+                    <h2>Pattern 8: Error Handling & Retry Logic</h2>
+
+                    <div class="example">
+                        <strong>Robust Agent Design:</strong>
+                        <ol>
+                            <li><strong>Retry with backoff:</strong> If API fails, retry with increasing delays</li>
+                            <li><strong>Fallback models:</strong> Try GPT-4 → Claude → GPT-3.5</li>
+                            <li><strong>Graceful degradation:</strong> Return partial results instead of failing</li>
+                            <li><strong>Circuit breaker:</strong> Stop after N failures to prevent waste</li>
+                            <li><strong>Logging:</strong> Track all failures for debugging</li>
+                        </ol>
+                    </div>
+
+                    <h2>Pattern 9: Task Decomposition</h2>
+
+                    <p>Break monolithic tasks into smaller, manageable pieces.</p>
+
+                    <div class="diagram">Monolithic:
+"Build a web app" → Overwhelmed agent
+
+Decomposed:
+"Build a web app"
+  ├─ Design database schema
+  ├─ Create API endpoints
+  ├─ Build frontend
+  └─ Write tests
+
+Each task is manageable!</div>
+
+                    <h2>Pattern 10: Human-in-the-Loop</h2>
+
+                    <div class="principle-box">
+                        <h3>Intervention Points</h3>
+                        <ul>
+                            <li><strong>Pre-execution:</strong> Human approves plan</li>
+                            <li><strong>Mid-execution:</strong> Checkpoints for review</li>
+                            <li><strong>Post-execution:</strong> Human validates output</li>
+                            <li><strong>On-error:</strong> Human resolves ambiguities</li>
+                        </ul>
+                    </div>
+
+                    <div class="nav-buttons">
+                        <button class="btn btn-secondary" onclick="loadContent('m3b-langgraph')">← Previous</button>
+                        <button class="btn btn-primary" onclick="loadContent('m5-rag')">Next: Agentic RAG →</button>
+                    </div>
+                `,
+
+                'm5-rag': `
+                    <h1>Agentic RAG: Intelligent Retrieval Systems</h1>
+                    <p><em>Module 5: Advanced Agentic Systems & Agentic RAG</em></p>
+
+                    <h2>Beyond Simple Retrieval</h2>
+                    <p>Traditional RAG retrieves documents and generates answers. Agentic RAG dynamically decides what to retrieve, how to process it, and when to ask follow-up questions.</p>
+
+                    <div class="principle-box">
+                        <h3>The Evolution</h3>
+                        <ul>
+                            <li><strong>Basic RAG:</strong> Query → Retrieve → Generate (one-shot)</li>
+                            <li><strong>Advanced RAG:</strong> Hybrid search, re-ranking, multi-hop retrieval</li>
+                            <li><strong>Agentic RAG:</strong> Agent decides retrieval strategy dynamically</li>
+                        </ul>
+                    </div>
+
+                    <h2>Agentic RAG Architecture</h2>
+
+                    <div class="diagram">Agentic RAG Flow:
+
+User Question
+    ↓
+Agent Thinks: "What info do I need?"
+    ↓
+Decide Retrieval Strategy:
+  ├─ Keyword search?
+  ├─ Semantic search?
+  ├─ Metadata filters?
+  └─ Multi-hop retrieval?
+    ↓
+Retrieve Relevant Documents
+    ↓
+Agent Evaluates: "Is this enough?"
+    ├─ YES → Generate Answer
+    └─ NO → Retrieve More / Ask Follow-up
+    ↓
+Generate High-Quality Answer</div>
+
+                    <h2>Key Capabilities</h2>
+
+                    <h3>1. Dynamic Retrieval</h3>
+                    <p>Agent decides what and how much to retrieve based on the query.</p>
+                    <div class="example">
+                        <strong>Simple Query:</strong> "What's our refund policy?"<br>
+                        → Retrieve 1-2 most relevant documents
+                        <br><br>
+                        <strong>Complex Query:</strong> "Compare our pricing to competitors"<br>
+                        → Retrieve pricing docs, competitor research, market analysis
+                    </div>
+
+                    <h3>2. Multi-Hop Retrieval</h3>
+                    <p>Iteratively refine questions and retrieve based on intermediate results.</p>
+                    <div class="diagram">Multi-Hop Process:
+
+Question: "What features do our enterprise customers use most?"
+  ↓
+Retrieve: Customer profiles, feature usage data
+  ↓
+Agent: "I see usage patterns, but need pricing tiers"
+  ↓
+Retrieve: Pricing documentation
+  ↓
+Agent: "Perfect, now I can answer"
+  ↓
+Answer: Comprehensive analysis</div>
+
+                    <h3>3. Query Refinement</h3>
+                    <p>Agent rewrites questions to improve retrieval.</p>
+                    <div class="example">
+                        <strong>Original:</strong> "How do we handle stuff?"<br>
+                        <strong>Refined:</strong> "What is our process for handling customer support requests?" (specific, searchable)
+                    </div>
+
+                    <h3>4. Retrieved Content Evaluation</h3>
+                    <p>Agent assesses relevance and completeness of retrieved documents.</p>
+                    <div class="diagram">Evaluation:
+
+Document A: 95% relevant
+Document B: 60% relevant (use anyway - different angle)
+Document C: 10% relevant (discard)
+
+Agent: "I have enough to answer"</div>
+
+                    <h2>Agentic RAG vs Traditional RAG</h2>
+
+                    <div class="diagram">Traditional RAG:
+Query → Fixed Retrieval → Generate
+(Same strategy for every query)
+
+Agentic RAG:
+Query → Agent Analyzes → Adaptive Retrieval → Generate
+(Strategy changes based on query)</div>
+
+                    <h2>Real-World Agentic RAG Example</h2>
+
+                    <div class="example">
+                        <strong>Scenario:</strong> Customer Support Chatbot
+                        <br><br>
+                        <strong>User:</strong> "I paid for premium but only got basic features"
+                        <br><br>
+                        <strong>Agent's Process:</strong>
+                        <ol>
+                            <li>Analyze: "This is about billing/features mismatch"</li>
+                            <li>Retrieve: Account types, feature mapping, billing docs</li>
+                            <li>Reason: "Might be upgrade delay or bug"</li>
+                            <li>Retrieve: Known issues, upgrade process</li>
+                            <li>Generate: Specific solution (e.g., "Try re-login" or "Contact support")</li>
+                        </ol>
+                    </div>
+
+                    <h2>Vector Stores & Embeddings</h2>
+
+                    <div class="principle-box">
+                        <h3>Popular Vector Stores</h3>
+                        <ul>
+                            <li><strong>Pinecone:</strong> Serverless, fully managed</li>
+                            <li><strong>Weaviate:</strong> Open-source, self-hosted</li>
+                            <li><strong>Milvus:</strong> High-performance, scalable</li>
+                            <li><strong>Qdrant:</strong> Fast, accurate vector search</li>
+                            <li><strong>Chroma:</strong> Lightweight, easy to use</li>
+                        </ul>
+                    </div>
+
+                    <h2>Chunking Strategies</h2>
+
+                    <div class="example">
+                        <strong>Naive Chunking:</strong> Split by character count<br>
+                        Problem: Breaks mid-sentence, loses context
+                        <br><br>
+                        <strong>Smart Chunking:</strong> Split by sentences/paragraphs + overlap<br>
+                        Problem: Still might miss cross-document context
+                        <br><br>
+                        <strong>Semantic Chunking:</strong> Split by topic/meaning (via embeddings)<br>
+                        Benefit: Keeps related content together
+                    </div>
+
+                    <h2>Hybrid Search</h2>
+
+                    <p>Combine keyword (BM25) and semantic (vector) search for best results.</p>
+
+                    <div class="diagram">Hybrid Search:
+
+User Query
+    ├─→ [BM25 Search] → Top 10 keyword matches
+    └─→ [Vector Search] → Top 10 semantic matches
+        ↓
+    Rerank & Combine (RRF or learned ranking)
+        ↓
+    Top 5 Best Results</div>
+
+                    <div class="key-takeaway">
+                        <strong>💡 Why Hybrid Works:</strong> Keywords catch exact matches (e.g., "refund"), vectors catch semantic similarity (e.g., "return" = "refund"). Together they're more robust.
+                    </div>
+
+                    <h2>Evaluation Metrics</h2>
+
+                    <div class="principle-box">
+                        <h3>Key Metrics</h3>
+                        <ul>
+                            <li><strong>Retrieval Recall:</strong> Did we get the relevant documents?</li>
+                            <li><strong>Answer Accuracy:</strong> Is the generated answer correct?</li>
+                            <li><strong>Latency:</strong> How fast did we respond?</li>
+                            <li><strong>Cost:</strong> How many tokens did we use?</li>
+                        </ul>
+                    </div>
+
+                    <h2>Common Pitfalls</h2>
+
+                    <div class="example">
+                        <strong>1. Poor Document Quality</strong><br>
+                        Garbage in → Garbage out. Clean and structure your data.
+                        <br><br>
+                        <strong>2. Inadequate Chunking</strong><br>
+                        Too large: Loses precision. Too small: Loses context.
+                        <br><br>
+                        <strong>3. Outdated Embeddings</strong><br>
+                        Re-index when documents change significantly.
+                        <br><br>
+                        <strong>4. Ignoring Ranking</strong><br>
+                        First results aren't always best. Use re-ranking.
+                    </div>
+
+                    <div class="nav-buttons">
+                        <button class="btn btn-secondary" onclick="loadContent('m5-patterns')">← Previous</button>
+                        <button class="btn btn-primary" onclick="loadContent('m5-production')">Next: Production Architecture →</button>
+                    </div>
+                `,
+
+                'm5-production': `
+                    <h1>Production Architecture: Building at Scale</h1>
+                    <p><em>Module 5: Advanced Agentic Systems & Agentic RAG</em></p>
+
+                    <h2>From Prototype to Production</h2>
+                    <p>Running agents in production is fundamentally different from playing with them locally. Reliability, cost, and latency matter.</p>
+
+                    <div class="principle-box">
+                        <h3>Production Requirements</h3>
+                        <ul>
+                            <li><strong>Reliability:</strong> 99.9%+ uptime</li>
+                            <li><strong>Latency:</strong> Sub-second response for most queries</li>
+                            <li><strong>Cost:</strong> Predictable, bounded spending</li>
+                            <li><strong>Observability:</strong> Know what's happening at all times</li>
+                            <li><strong>Scalability:</strong> Handle 10x more users tomorrow</li>
+                        </ul>
+                    </div>
+
+                    <h2>Architecture Layers</h2>
+
+                    <div class="diagram">Production Agent Stack:
+
+┌─────────────────────────────────────┐
+│         API Layer (FastAPI)         │
+│    (Rate limiting, auth, routing)   │
+└────────────────┬────────────────────┘
+                 ↓
+┌─────────────────────────────────────┐
+│       Agent Orchestration (LG)      │
+│    (Flow control, state management) │
+└────────────────┬────────────────────┘
+                 ↓
+┌─────────────────────────────────────┐
+│      Tool Execution Layer           │
+│  (Retry logic, timeout handling)    │
+└────────────────┬────────────────────┘
+                 ↓
+┌──┬──────────────┬──┬─────────────┐
+│LM│ Vector DB │DB│Ext. APIs   │
+└──┴──────────────┴──┴─────────────┘</div>
+
+                    <h2>Request Handling</h2>
+
+                    <h3>Queue-Based Architecture</h3>
+                    <p>For complex queries, use async processing instead of waiting.</p>
+
+                    <div class="diagram">Real-time Queries (< 1 sec expected):
+Request → Process → Response (HTTP)
+
+Complex Queries (> 1 sec):
+Request → Queue → Background Job → Notify User (WebSocket/Email)</div>
+
+                    <h2>Cost Optimization</h2>
+
+                    <div class="principle-box">
+                        <h3>Strategies</h3>
+                        <ol>
+                            <li><strong>Caching:</strong> Cache common queries and LLM responses</li>
+                            <li><strong>Prompt Compression:</strong> Summarize context before sending to LLM</li>
+                            <li><strong>Model Selection:</strong> Use cheaper models for simple tasks</li>
+                            <li><strong>Batch Processing:</strong> Process multiple requests together</li>
+                            <li><strong>Rate Limiting:</strong> Prevent cost runaway from abuse</li>
+                        </ol>
+                    </div>
+
+                    <div class="example">
+                        <strong>Cost Reduction Example:</strong>
+                        <ul>
+                            <li>Without optimization: $0.50 per query × 10K queries = $5,000/day 😱</li>
+                            <li>With 50% cache hit: $0.25 per query × 10K = $2,500/day</li>
+                            <li>With prompt compression: $0.15 per query × 10K = $1,500/day</li>
+                            <li>With cheaper model for simple queries: $1,000/day</li>
+                        </ul>
+                    </div>
+
+                    <h2>Latency Optimization</h2>
+
+                    <div class="diagram">Latency Breakdown (typical agent):
+- Routing/Auth: 10ms
+- Vector Search: 50ms
+- LLM Call: 500ms (main bottleneck)
+- Post-processing: 20ms
+────────────────
+Total: ~580ms
+
+Optimization targets:
+✓ Parallel vector search (10ms faster)
+✓ Shorter context (faster LLM)
+✓ Streaming response (users see results faster)</div>
+
+                    <h2>Monitoring & Observability</h2>
+
+                    <div class="principle-box">
+                        <h3>Key Metrics to Track</h3>
+                        <ul>
+                            <li><strong>Request volume:</strong> QPS (queries per second)</li>
+                            <li><strong>Latency:</strong> p50, p95, p99</li>
+                            <li><strong>Error rate:</strong> % of failed requests</li>
+                            <li><strong>Token usage:</strong> Total cost per day</li>
+                            <li><strong>Agent success rate:</strong> % of queries solved without fallback</li>
+                        </ul>
+                    </div>
+
+                    <div class="example">
+                        <strong>Alert Examples:</strong>
+                        <ul>
+                            <li>❌ Error rate > 1%</li>
+                            <li>❌ P95 latency > 2 seconds</li>
+                            <li>❌ Token usage > budget</li>
+                            <li>❌ Agent success rate < 80%</li>
+                        </ul>
+                    </div>
+
+                    <h2>Deployment Strategies</h2>
+
+                    <h3>Blue-Green Deployment</h3>
+                    <p>Run two identical environments. Route traffic to the new one only after validation.</p>
+
+                    <div class="diagram">Blue (old) ← Traffic → Green (new)
+                                   ↓
+                            All tests pass?
+                                   ↓
+                           Yes → Switch traffic
+                           No → Rollback</div>
+
+                    <h3>Canary Deployment</h3>
+                    <p>Route 5% of traffic to new version, gradually increase if healthy.</p>
+
+                    <div class="diagram">Old Version: 95% → 50% → 5% → 0%
+New Version: 5% → 50% → 95% → 100%</div>
+
+                    <h2>Handling Failures Gracefully</h2>
+
+                    <div class="example">
+                        <strong>LLM Timeout:</strong><br>
+                        → Return cached similar answer or partial result
+                        <br><br>
+                        <strong>Vector DB Down:</strong><br>
+                        → Fall back to keyword search or predefined responses
+                        <br><br>
+                        <strong>External API Fails:</strong><br>
+                        → Use last known value or approximate
+                        <br><br>
+                        <strong>Unknown Query:</strong><br>
+                        → Escalate to human with context
+                    </div>
+
+                    <h2>Security Considerations</h2>
+
+                    <div class="principle-box">
+                        <h3>Critical Security Measures</h3>
+                        <ul>
+                            <li><strong>Input validation:</strong> Prevent injection attacks</li>
+                            <li><strong>Rate limiting:</strong> Prevent DoS</li>
+                            <li><strong>Secrets management:</strong> Never hardcode API keys</li>
+                            <li><strong>Audit logging:</strong> Track all agent actions</li>
+                            <li><strong>Sandboxing:</strong> Isolate agent execution</li>
+                        </ul>
+                    </div>
+
+                    <h2>The Future of Agentic AI</h2>
+
+                    <div class="key-takeaway">
+                        <strong>🚀 What's Coming:</strong>
+                        <ul>
+                            <li>More autonomous agents (fewer human interventions needed)</li>
+                            <li>Better reasoning models (handling complex multi-step tasks)</li>
+                            <li>Specialized agents for specific domains</li>
+                            <li>Agents that can self-improve and adapt</li>
+                            <li>Standardized agentic protocols (like HTTP for AI)</li>
+                        </ul>
+                    </div>
+
+                    <h2>Your Next Steps</h2>
+
+                    <div class="principle-box">
+                        <h3>Building Your First Production Agent</h3>
+                        <ol>
+                            <li><strong>Start simple:</strong> One LLM + one tool</li>
+                            <li><strong>Add complexity gradually:</strong> More tools, memory, evaluation</li>
+                            <li><strong>Measure everything:</strong> Cost, latency, accuracy</li>
+                            <li><strong>Iterate:</strong> Learn from production behavior</li>
+                            <li><strong>Scale:</strong> Handle more traffic, more complex queries</li>
+                        </ol>
+                    </div>
+
+                    <div class="nav-buttons">
+                        <button class="btn btn-secondary" onclick="loadContent('m5-rag')">← Previous</button>
+                        <button class="btn btn-secondary" disabled>You've completed the curriculum! 🎉</button>
+                    </div>
+                `
+            };
+
+            content.innerHTML = pages[page] || '<h1>Content not found</h1>';
+            content.parentElement.scrollTop = 0;
+        }
+
+        // Load intro on page load
+        loadContent('intro');
+    </script>
+</body>
+</html>
